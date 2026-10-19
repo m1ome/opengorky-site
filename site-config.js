@@ -4,6 +4,9 @@ window.SITE_CONFIG = {
   // The one place to bump on release. Downloads and the version label use it; .github/workflows/release.yml rewrites this line.
   version: "v0.1.0",
   githubRepo: "m1ome/opengorky",
+  // Google Analytics 4 Measurement ID, e.g. "G-XXXXXXXXXX". null = no analytics, no consent banner.
+  // GA loads only after the visitor clicks Accept in the cookie banner.
+  gaMeasurementId: "G-BZEGXREPPF",
   repositoryUrl: "https://github.com/m1ome/opengorky",
   issuesUrl: "https://github.com/m1ome/opengorky/issues",
   releasesUrl: "https://github.com/m1ome/opengorky/releases",

@@ -35,8 +35,10 @@
         : "inline-flex min-h-11 cursor-not-allowed items-center gap-2 text-muted line-through decoration-1";
       el.textContent = d.platform + (!isHero && d.arch ? " " + d.arch : "") + " ";
       el.insertAdjacentHTML("beforeend", '<span aria-hidden="true">↓</span>');
-      if (url) el.href = url;
-      else {
+      if (url) {
+        el.href = url;
+        el.setAttribute("data-download", JSON.stringify({ platform: d.platform, arch: d.arch || "", version: cfg.version }));
+      } else {
         el.setAttribute("aria-disabled", "true");
         el.insertAdjacentHTML("beforeend", '<span class="sr-only"> (not available)</span>');
       }
@@ -50,6 +52,81 @@
     el.textContent = "Version " + cfg.version;
     el.hidden = !anyAvailable;
   });
+
+  // Analytics: GA4 is loaded only after explicit consent; the choice lives in localStorage.
+  var gaId = /^G-[A-Z0-9]+$/.test(cfg.gaMeasurementId || "") ? cfg.gaMeasurementId : null;
+  var CONSENT_KEY = "og-analytics-consent";
+  var gaLoaded = false;
+  function readConsent() {
+    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+  }
+  function saveConsent(v) {
+    try { localStorage.setItem(CONSENT_KEY, v); } catch (e) { /* private mode: ask again next visit */ }
+  }
+  function loadGa() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("consent", "default", { analytics_storage: "granted", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+    window.gtag("js", new Date());
+    window.gtag("config", gaId);
+    var sc = document.createElement("script");
+    sc.async = true;
+    sc.src = "https://www.googletagmanager.com/gtag/js?id=" + gaId;
+    document.head.appendChild(sc);
+  }
+  function revokeGa() {
+    if (window.gtag) window.gtag("consent", "update", { analytics_storage: "denied" });
+    document.cookie.split(";").forEach(function (c) {
+      var name = c.split("=")[0].trim();
+      if (name.indexOf("_ga") === 0) {
+        document.cookie = name + "=; Max-Age=0; path=/";
+        document.cookie = name + "=; Max-Age=0; path=/; domain=." + location.hostname.replace(/^www\./, "");
+      }
+    });
+  }
+
+  var banner = null;
+  function showBanner() {
+    if (banner) { banner.hidden = false; return; }
+    banner = document.createElement("section");
+    banner.setAttribute("aria-label", "Cookie consent");
+    banner.className = "fixed inset-x-0 bottom-0 z-40 border-t border-line-dark bg-char/95 text-ivory backdrop-blur-sm";
+    banner.innerHTML =
+      '<div class="wrap flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">' +
+        '<p class="max-w-2xl font-mono text-xs leading-relaxed text-muted sm:text-sm"><span class="text-accent">Field note /</span> ' +
+        'With your permission we use Google Analytics cookies to count visits and downloads. Nothing is loaded until you accept.</p>' +
+        '<div class="flex shrink-0 gap-3">' +
+          '<button type="button" data-consent="granted" class="btn border-accent bg-accent text-ink hover:border-ivory hover:bg-ivory">Accept</button>' +
+          '<button type="button" data-consent="denied" class="btn border-ivory hover:bg-ivory hover:text-ink">Decline</button>' +
+        "</div>" +
+      "</div>";
+    banner.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-consent]");
+      if (!b) return;
+      var v = b.getAttribute("data-consent");
+      saveConsent(v);
+      if (v === "granted") loadGa(); else revokeGa();
+      banner.hidden = true;
+    });
+    document.body.appendChild(banner);
+  }
+
+  if (gaId) {
+    var consent = readConsent();
+    if (consent === "granted") loadGa();
+    else if (consent !== "denied") showBanner();
+    document.querySelectorAll("[data-consent-open]").forEach(function (b) {
+      b.hidden = false;
+      b.addEventListener("click", showBanner);
+    });
+    // GA4's built-in file_download misses .tar.xz, so downloads get their own event.
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-download]");
+      if (a && window.gtag && readConsent() === "granted") window.gtag("event", "download", JSON.parse(a.getAttribute("data-download")));
+    });
+  }
 
   // Mobile navigation
   var toggle = document.querySelector('[aria-controls="site-nav"]');
