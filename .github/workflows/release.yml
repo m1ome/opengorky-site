@@ -1,0 +1,63 @@
+name: Release site
+
+# Manual only: Actions -> Release site -> Run workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release tag of the game repo (e.g. v0.2.0). Empty = latest release."
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # commit the bumped version
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Pin version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ inputs.version }}
+        run: node scripts/release.mjs "$VERSION"
+
+      - name: Build CSS
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit version bump
+        run: |
+          if git diff --quiet -- site-config.js styles.css; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          VER=$(grep -oE 'version: "[^"]+"' site-config.js | cut -d'"' -f2)
+          git commit -am "Release site for $VER"
+          git push
+
+      - name: Collect site
+        run: |
+          mkdir _site
+          cp -R index.html faq.html styles.css site.js site-config.js assets _site/
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+      - id: deploy
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,13 @@
+{
+  "name": "opengorky-site",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i src/input.css -o styles.css --minify",
+    "dev": "tailwindcss -i src/input.css -o styles.css --watch",
+    "release": "node scripts/release.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

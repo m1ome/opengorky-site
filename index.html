@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Gorky — open-source Gorky 17 engine in Zig</title>
+  <meta name="description" content="Open Gorky is an independent, open-source reimplementation of Gorky 17 in Zig.">
+  <link rel="icon" href="assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/hero-city.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="absolute inset-x-0 top-0 z-30">
+    <span class="crosshair top-9 left-4 max-lg:hidden" aria-hidden="true"></span>
+    <span class="crosshair top-9 right-4 max-lg:hidden" aria-hidden="true"></span>
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="index.html" aria-label="Open Gorky — home">
+        <img src="assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent" href="faq.html">FAQ</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="relative isolate overflow-hidden pt-28 pb-14 lg:min-h-[650px] lg:pt-32" aria-labelledby="hero-title">
+      <img class="absolute inset-0 -z-20 h-full w-full object-cover object-[72%_center] lg:left-auto lg:w-[72%]" src="assets/hero-city.webp" alt="" width="1536" height="1024" fetchpriority="high">
+      <!-- left fade keeps copy readable without washing out the scene -->
+      <div class="absolute inset-0 -z-10 bg-gradient-to-t from-char from-20% via-char/60 to-char/20 lg:bg-gradient-to-r lg:from-char lg:from-30% lg:via-char/60 lg:via-45% lg:to-transparent lg:to-65%" aria-hidden="true"></div>
+      <span class="absolute top-28 right-16 border-b border-line-dark pb-2 font-mono text-[10px] tracking-[.2em] text-muted uppercase max-lg:hidden" aria-hidden="true">Sector 17 / Restricted area</span>
+      <span class="absolute right-16 bottom-14 border-b border-line-dark pb-2 font-mono text-[10px] tracking-[.2em] text-muted uppercase max-lg:hidden" aria-hidden="true">Archive / 1999</span>
+
+      <div class="wrap">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase sm:text-sm">Open-source engine reimplementation</p>
+        <h1 id="hero-title" class="mt-6 font-extrabold uppercase">
+          <span class="block text-5xl leading-none tracking-[.55em] sm:text-6xl lg:text-[64px]">Open</span>
+          <span class="distress block origin-top-left scale-y-[1.45] pt-2 pb-[.5em] text-[clamp(4.25rem,15vw,10.5rem)] leading-[.8] tracking-tight whitespace-nowrap">Gorky 17</span>
+        </h1>
+        <p class="text-3xl font-medium sm:text-4xl lg:text-[40px]">Back inside the perimeter.</p>
+        <p class="mt-3 max-w-xl font-mono text-sm leading-relaxed text-ivory/85 sm:text-[15px]">A new engine for a city that should have stayed forgotten.</p>
+
+        <div class="mt-8 flex flex-wrap gap-5">
+          <a class="btn min-h-12 border-accent bg-accent px-16 font-display text-2xl text-ink hover:bg-ivory hover:border-ivory max-sm:w-full lg:min-w-[260px]" href="#downloads">Download <span aria-hidden="true">↓</span></a>
+          <a class="btn min-h-12 border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink max-sm:w-full" data-config-link="repositoryUrl">View source <span aria-hidden="true">↗</span></a>
+        </div>
+        <ul class="mt-5 flex flex-wrap font-mono text-sm" data-downloads="hero" aria-label="Platform builds"></ul>
+        <p class="mt-3 font-mono text-xs tracking-wider text-muted" data-release-version hidden></p>
+        <p class="mt-3 font-mono text-xs text-muted" data-downloads-note>Builds are not linked yet.</p>
+      </div>
+    </section>
+
+    <section class="border-t border-line-dark bg-char" aria-label="Project goals">
+      <div class="wrap grid md:grid-cols-3">
+        <article class="flex gap-5 py-6 max-md:border-b max-md:border-line-dark md:border-r md:border-line-dark md:pr-6 lg:py-7">
+          <div class="min-w-0 flex-1">
+            <h2 class="font-mono text-sm tracking-wide uppercase"><span class="text-lg text-accent">01 /</span> The original atmosphere</h2>
+            <p class="mt-3 font-mono text-xs leading-relaxed text-muted">Aims to recreate the look, feel and mood that made Gorky 17 unique.</p>
+          </div>
+          <img class="h-20 w-36 shrink-0 object-cover object-[30%_10%] opacity-90 grayscale max-lg:hidden" src="assets/hero-city.webp" alt="" width="1536" height="1024" loading="lazy">
+        </article>
+        <article class="flex gap-5 py-6 max-md:border-b max-md:border-line-dark md:border-r md:border-line-dark md:px-6 lg:py-7">
+          <div class="min-w-0 flex-1">
+            <h2 class="font-mono text-sm tracking-wide uppercase"><span class="text-lg text-accent">02 /</span> A new foundation</h2>
+            <p class="mt-3 font-mono text-xs leading-relaxed text-muted">A new engine written in Zig, with a focus on maintainability and openness.</p>
+          </div>
+          <img class="h-20 w-36 shrink-0 object-cover object-[62%_40%] opacity-90 grayscale max-lg:hidden" src="assets/hero-city.webp" alt="" width="1536" height="1024" loading="lazy">
+        </article>
+        <article class="flex gap-5 py-6 md:pl-6 lg:py-7">
+          <div class="min-w-0 flex-1">
+            <h2 class="font-mono text-sm tracking-wide uppercase"><span class="text-lg text-accent">03 /</span> Built in the open</h2>
+            <p class="mt-3 font-mono text-xs leading-relaxed text-muted">Developed in public by a community that believes great games deserve to live on.</p>
+          </div>
+          <img class="h-20 w-36 shrink-0 object-cover object-[78%_12%] opacity-90 grayscale max-lg:hidden" src="assets/hero-city.webp" alt="" width="1536" height="1024" loading="lazy">
+        </article>
+      </div>
+    </section>
+
+    <section id="project" class="bg-ivory py-12 text-ink lg:py-14" aria-labelledby="project-title">
+      <div class="wrap">
+        <div class="flex items-center gap-4 font-mono text-sm tracking-[.2em] uppercase">The project <span class="h-px w-16 bg-ink" aria-hidden="true"></span><span class="h-px flex-1 bg-line-light max-md:hidden" aria-hidden="true"></span></div>
+        <div class="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_560px] lg:gap-0">
+          <h2 id="project-title" class="text-[clamp(3.25rem,7vw,6.25rem)] leading-[.9] font-extrabold tracking-tight lg:pr-10">Old world. New engine.</h2>
+          <div class="flex flex-wrap items-start justify-between gap-8 border-line-light lg:ml-[-1px] lg:border-l lg:pl-10 lg:[&>p]:mt-1">
+            <p class="max-w-xs text-2xl leading-snug font-medium">An independent community project rebuilding Gorky&nbsp;17 in Zig.</p>
+            <span class="border-2 border-accent px-5 py-1.5 font-mono text-3xl font-bold tracking-[.2em] text-accent" aria-label="Written in Zig">ZIG</span>
+            <span class="h-px basis-full bg-line-light max-lg:hidden" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="mt-8 grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_auto] lg:mt-6 lg:grid-cols-[minmax(0,50%)_minmax(0,1fr)_auto] lg:gap-0">
+          <img class="h-16 w-full object-cover object-[50%_14%] opacity-60 mix-blend-multiply grayscale brightness-[2.2] contrast-150 [mask-image:linear-gradient(90deg,transparent_15%,#000_40%,#000_85%,transparent)] max-lg:hidden lg:pr-10" src="assets/hero-city.webp" alt="" width="1536" height="1024" loading="lazy">
+          <p class="border-l border-line-light pl-5 font-mono text-sm leading-relaxed lg:pr-12 lg:pl-10">Preserving the atmosphere, systems and spirit of a cult classic through a modern, open-source reimplementation.</p>
+          <p class="border-line-light font-mono text-[11px] leading-relaxed text-ink/70 md:border-l md:pl-7">Independent fan project.<br>Not affiliated with the original<br class="max-md:hidden"> rights holders.</p>
+        </div>
+
+        <section id="development" class="mt-14 grid gap-6 border-t border-line-light pt-10 md:grid-cols-[1fr_1fr]" aria-labelledby="dev-title">
+          <div>
+            <p class="font-mono text-sm tracking-[.2em] uppercase">Development</p>
+            <h2 id="dev-title" class="mt-3 text-4xl leading-none font-extrabold lg:text-5xl">Follow the work in the repository.</h2>
+          </div>
+          <div>
+            <p class="max-w-lg font-mono text-sm leading-relaxed">Source code, issues and development information are published in the project repository.</p>
+            <div class="mt-6 flex flex-wrap gap-4">
+              <a class="btn border-ink hover:not-aria-disabled:bg-ink hover:not-aria-disabled:text-ivory" data-config-link="repositoryUrl">Repository <span aria-hidden="true">↗</span></a>
+              <a class="btn border-ink hover:not-aria-disabled:bg-ink hover:not-aria-disabled:text-ivory" data-config-link="issuesUrl">Issue tracker <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="downloads" class="border-b border-line-dark py-12" aria-labelledby="downloads-title">
+      <div class="wrap grid gap-6 md:grid-cols-[1fr_1fr] md:items-end">
+        <div>
+          <p class="font-mono text-sm tracking-[.2em] text-accent uppercase">Downloads</p>
+          <h2 id="downloads-title" class="mt-3 text-4xl leading-none font-extrabold lg:text-5xl">Get a build</h2>
+        </div>
+        <div>
+          <p class="mb-2 font-mono text-xs tracking-wider text-accent" data-release-version hidden></p>
+          <ul class="grid gap-x-10 font-mono text-base sm:grid-cols-2" data-downloads aria-label="Platform builds"></ul>
+          <p class="mt-3 font-mono text-xs text-muted" data-downloads-note>Builds are not linked yet.</p>
+          <a class="mt-4 inline-flex flex-wrap gap-x-2 font-mono text-sm underline underline-offset-4 aria-disabled:cursor-not-allowed aria-disabled:no-underline aria-disabled:opacity-60" data-config-link="releasesUrl">All releases <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8">
+    <div class="wrap flex items-center gap-4 font-mono text-xs text-muted">
+      <img src="assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+    </div>
+  </footer>
+
+  <script src="site-config.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@font-face { font-family: "Barlow Condensed"; font-weight: 500; font-display: swap; src: url("../assets/fonts/barlow-condensed-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 800; font-display: swap; src: url("../assets/fonts/barlow-condensed-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-weight: 400; font-display: swap; src: url("../assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+
+@theme {
+  --color-char: #101310;
+  --color-ivory: #f1ecdf;
+  --color-ink: #171916;
+  --color-muted: #b5b5a7;
+  --color-accent: #e65a1b;
+  --color-line-dark: rgb(241 236 223 / .28);
+  --color-line-light: rgb(23 25 22 / .5);
+  --font-display: "Barlow Condensed", Oswald, "Arial Narrow", Impact, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html { background: var(--color-char); color: var(--color-ivory); font-family: var(--font-display); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+  [id] { scroll-margin-top: 24px; }
+}
+
+@utility wrap {
+  margin-inline: auto;
+  max-width: 1568px; /* 1440 content + 2x64 gutters */
+  padding-inline: 20px;
+  @variant sm { padding-inline: 24px; }
+  @variant md { padding-inline: 32px; }
+  @variant lg { padding-inline: 64px; }
+}
+
+/* Worn-print texture: speckled alpha mask from SVG noise, text stays real and selectable. */
+@utility distress {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' seed='17'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 9 0 0 0 -2.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' seed='17'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 9 0 0 0 -2.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Thin crosshair corner mark; position with top/left utilities. */
+@utility crosshair {
+  position: absolute; width: 28px; height: 28px; pointer-events: none;
+  background: linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat,
+              linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
+  opacity: .45;
+}
+
+/* Square buttons. aria-disabled = link not configured yet. */
+@utility btn {
+  @apply inline-flex min-h-12 items-center justify-center gap-x-3 gap-y-0.5 flex-wrap border px-7 py-2 text-center font-mono text-sm transition-colors;
+  @apply aria-disabled:cursor-not-allowed aria-disabled:border-dashed aria-disabled:opacity-60;
+}
