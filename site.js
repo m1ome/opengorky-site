@@ -169,7 +169,7 @@
       '<span class="min-w-0 text-2xl leading-tight font-medium tracking-wide sm:text-[28px]"></span>';
     s.lastChild.textContent = item.question;
     var p = document.createElement("p");
-    p.className = "-mt-2 pb-6 pl-11 font-mono text-sm leading-relaxed sm:text-[15px] lg:pl-[68px]" + (item.answer ? "" : " text-ink/65 italic");
+    p.className = "-mt-2 pb-6 pl-11 font-mono whitespace-pre-line break-words text-sm leading-relaxed sm:text-[15px] lg:pl-[68px]" + (item.answer ? "" : " text-ink/65 italic");
     p.textContent = item.answer || "This information has not been published yet.";
     d.append(s, p);
     faqList.appendChild(d);
