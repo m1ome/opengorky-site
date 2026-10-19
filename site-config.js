@@ -10,6 +10,7 @@ window.SITE_CONFIG = {
   repositoryUrl: "https://github.com/m1ome/opengorky",
   issuesUrl: "https://github.com/m1ome/opengorky/issues",
   releasesUrl: "https://github.com/m1ome/opengorky/releases",
+  zigUrl: "https://ziglang.org",
   // Download URL = github.com/<githubRepo>/releases/download/<version>/<asset>.
   // hero: false = only listed in the Downloads section, not under the hero buttons.
   downloads: [
