@@ -55,7 +55,7 @@ jobs:
       - name: Collect site
         run: |
           mkdir _site
-          cp -R index.html faq.html styles.css site.js site-config.js assets _site/
+          cp -R index.html faq.html styles.css site.js site-config.js robots.txt sitemap.xml assets _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
