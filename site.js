@@ -1,5 +1,28 @@
 (function () {
   var cfg = window.SITE_CONFIG || {};
+  // UI strings follow <html lang>; English is the fallback.
+  var ru = document.documentElement.lang === "ru";
+  var T = ru ? {
+    notLinked: "пока без ссылки",
+    unavailable: " (недоступно)",
+    version: "Версия ",
+    consentLabel: "Согласие на cookies",
+    consentNote: "Уведомление /",
+    consentText: "С вашего разрешения мы используем cookies Google Analytics, чтобы считать посещения и загрузки. Ничего не загружается, пока вы не согласитесь.",
+    accept: "Принять",
+    decline: "Отклонить",
+    noAnswer: "Эта информация пока не опубликована."
+  } : {
+    notLinked: "not linked yet",
+    unavailable: " (not available)",
+    version: "Version ",
+    consentLabel: "Cookie consent",
+    consentNote: "Field note /",
+    consentText: "With your permission we use Google Analytics cookies to count visits and downloads. Nothing is loaded until you accept.",
+    accept: "Accept",
+    decline: "Decline",
+    noAnswer: "This information has not been published yet."
+  };
 
   // Links whose target lives in config: <a data-config-link="repositoryUrl">.
   // Unset -> stays an <a> without href (not focusable) with a visible "not linked yet" note.
@@ -12,7 +35,7 @@
       return;
     }
     el.setAttribute("aria-disabled", "true");
-    el.insertAdjacentHTML("beforeend", '<span class="basis-full text-[10px] tracking-wider uppercase opacity-80">not linked yet</span>');
+    el.insertAdjacentHTML("beforeend", '<span class="basis-full text-[10px] tracking-wider uppercase opacity-80">' + T.notLinked + '</span>');
   });
 
   // Platform downloads (hero row + downloads section), all pinned to cfg.version
@@ -40,7 +63,7 @@
         el.setAttribute("data-download", JSON.stringify({ platform: d.platform, arch: d.arch || "", version: cfg.version }));
       } else {
         el.setAttribute("aria-disabled", "true");
-        el.insertAdjacentHTML("beforeend", '<span class="sr-only"> (not available)</span>');
+        el.insertAdjacentHTML("beforeend", '<span class="sr-only">' + T.unavailable + '</span>');
       }
       li.appendChild(el);
       list.appendChild(li);
@@ -49,7 +72,7 @@
   var anyAvailable = downloads.some(assetUrl);
   document.querySelectorAll("[data-downloads-note]").forEach(function (n) { n.hidden = anyAvailable; });
   document.querySelectorAll("[data-release-version]").forEach(function (el) {
-    el.textContent = "Version " + cfg.version;
+    el.textContent = T.version + cfg.version;
     el.hidden = !anyAvailable;
   });
 
@@ -91,15 +114,15 @@
   function showBanner() {
     if (banner) { banner.hidden = false; return; }
     banner = document.createElement("section");
-    banner.setAttribute("aria-label", "Cookie consent");
+    banner.setAttribute("aria-label", T.consentLabel);
     banner.className = "fixed inset-x-0 bottom-0 z-40 border-t border-line-dark bg-char/95 text-ivory backdrop-blur-sm";
     banner.innerHTML =
       '<div class="wrap flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between">' +
-        '<p class="max-w-2xl font-mono text-xs leading-relaxed text-muted sm:text-sm"><span class="text-accent">Field note /</span> ' +
-        'With your permission we use Google Analytics cookies to count visits and downloads. Nothing is loaded until you accept.</p>' +
+        '<p class="max-w-2xl font-mono text-xs leading-relaxed text-muted sm:text-sm"><span class="text-accent">' + T.consentNote + '</span> ' +
+        T.consentText + '</p>' +
         '<div class="flex shrink-0 gap-3">' +
-          '<button type="button" data-consent="granted" class="btn border-accent bg-accent text-ink hover:border-ivory hover:bg-ivory">Accept</button>' +
-          '<button type="button" data-consent="denied" class="btn border-ivory hover:bg-ivory hover:text-ink">Decline</button>' +
+          '<button type="button" data-consent="granted" class="btn border-accent bg-accent text-ink hover:border-ivory hover:bg-ivory">' + T.accept + '</button>' +
+          '<button type="button" data-consent="denied" class="btn border-ivory hover:bg-ivory hover:text-ink">' + T.decline + '</button>' +
         "</div>" +
       "</div>";
     banner.addEventListener("click", function (e) {
@@ -167,10 +190,11 @@
     s.innerHTML =
       '<span aria-hidden="true" class="relative mt-3 size-5 shrink-0 before:absolute before:inset-x-0 before:top-1/2 before:h-0.5 before:-translate-y-1/2 before:bg-current after:absolute after:inset-y-0 after:left-1/2 after:w-0.5 after:-translate-x-1/2 after:bg-current group-open:text-accent group-open:after:hidden"></span>' +
       '<span class="min-w-0 text-2xl leading-tight font-medium tracking-wide sm:text-[28px]"></span>';
-    s.lastChild.textContent = item.question;
+    var text = (ru && item.ru) || item;
+    s.lastChild.textContent = text.question;
     var p = document.createElement("p");
-    p.className = "-mt-2 pb-6 pl-11 font-mono whitespace-pre-line break-words text-sm leading-relaxed sm:text-[15px] lg:pl-[68px]" + (item.answer ? "" : " text-ink/65 italic");
-    p.textContent = item.answer || "This information has not been published yet.";
+    p.className = "-mt-2 pb-6 pl-11 font-mono whitespace-pre-line break-words text-sm leading-relaxed sm:text-[15px] lg:pl-[68px]" + (text.answer ? "" : " text-ink/65 italic");
+    p.textContent = text.answer || T.noAnswer;
     d.append(s, p);
     faqList.appendChild(d);
   });

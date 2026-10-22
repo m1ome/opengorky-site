@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Gorky — открытый движок Gorky 17 (Odium) на Zig</title>
+  <meta name="description" content="Open Gorky — независимая реимплементация движка Gorky 17 (Odium) с открытым исходным кодом на Zig. Играйте в тактическую RPG 1999 года нативно на Windows, macOS и Linux с оригинальными файлами игры.">
+  <link rel="canonical" href="https://opengorky.app/ru/">
+  <link rel="alternate" hreflang="en" href="https://opengorky.app/">
+  <link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://opengorky.app/">
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/ru/">
+  <meta property="og:title" content="Open Gorky — открытый движок Gorky 17 на Zig">
+  <meta property="og:description" content="Open Gorky — независимая реимплементация движка Gorky 17 (Odium) с открытым исходным кодом на Zig. Играйте в тактическую RPG 1999 года нативно на Windows, macOS и Linux с оригинальными файлами игры.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Логотип Open Gorky 17 на фоне ночного разрушенного города">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/hero-city.webp" as="image" type="image/webp">
+  <link rel="preload" href="../assets/open-gorky-17-wordmark.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Open Gorky",
+  "alternateName": "OpenGorky",
+  "url": "https://opengorky.app/ru/",
+  "inLanguage": "ru",
+  "description": "Независимая реимплементация игрового движка Gorky 17 (Odium) с открытым исходным кодом на Zig. Нужны оригинальные файлы игры.",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Windows 10+, macOS 13+, Linux",
+  "image": "https://opengorky.app/assets/og-image.jpg",
+  "license": "https://opensource.org/licenses/MIT",
+  "sameAs": [
+    "https://github.com/m1ome/opengorky"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Перейти к содержимому</a>
+
+  <header class="absolute inset-x-0 top-0 z-30">
+    <span class="crosshair top-9 left-4 max-lg:hidden" aria-hidden="true"></span>
+    <span class="crosshair top-9 right-4 max-lg:hidden" aria-hidden="true"></span>
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="index.html" aria-label="Open Gorky — главная">
+        <img src="../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Меню
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Основное">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="#project">О проекте</a></li>
+          <li><a class="block py-3 hover:text-accent" href="#development">Разработка</a></li>
+          <li><a class="block py-3 hover:text-accent" href="faq.html">Вопросы</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../index.html" hreflang="en" lang="en" aria-label="EN — English version">EN</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Исходный код <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="relative isolate overflow-hidden pt-24 pb-10 lg:min-h-[650px] lg:pt-28 lg:pb-8" aria-labelledby="hero-title">
+      <img class="absolute inset-0 -z-20 h-full w-full object-cover object-[72%_center] lg:right-0 lg:left-auto lg:w-auto lg:max-w-none lg:[mask-image:linear-gradient(90deg,transparent,#000_40%)]" src="../assets/hero-city.webp" alt="" width="1536" height="1024" fetchpriority="high">
+      <!-- left fade keeps copy readable without washing out the scene -->
+      <div class="absolute inset-0 -z-10 bg-gradient-to-t from-char from-20% via-char/60 to-char/20 lg:bg-gradient-to-r lg:from-char lg:from-25% lg:via-char/60 lg:via-38% lg:to-transparent lg:to-55%" aria-hidden="true"></div>
+      <span class="absolute top-28 right-16 border-b border-line-dark pb-2 font-mono text-[10px] tracking-[.2em] text-muted uppercase max-lg:hidden" aria-hidden="true">Сектор 17 / Запретная зона</span>
+      <span class="absolute right-16 bottom-8 border-b border-line-dark pb-2 font-mono text-[10px] tracking-[.2em] text-muted uppercase max-lg:hidden" aria-hidden="true">Архив / 1999</span>
+
+      <div class="wrap">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase sm:text-sm">Реимплементация движка с открытым кодом</p>
+        <h1 id="hero-title" class="mt-5"><img class="block h-auto w-[min(100%,520px)] -translate-x-[5%] object-contain" src="../assets/open-gorky-17-wordmark.webp" alt="Open Gorky 17" width="1040" height="434" fetchpriority="high"></h1>
+        <p class="mt-6 text-3xl font-medium sm:text-4xl lg:text-[40px]">Снова внутри периметра.</p>
+        <p class="mt-3 max-w-xl font-mono text-sm leading-relaxed text-ivory/85 sm:text-[15px]">Новый движок для города, который лучше было бы забыть.</p>
+
+        <div class="mt-6 flex flex-wrap gap-5">
+          <a class="btn min-h-12 border-accent bg-accent px-16 font-display text-2xl text-ink hover:bg-ivory hover:border-ivory max-sm:w-full lg:min-w-[260px]" href="#downloads">Скачать <span aria-hidden="true">↓</span></a>
+          <a class="btn min-h-12 border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink max-sm:w-full" data-config-link="repositoryUrl">Исходный код <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="mt-2 flex flex-wrap items-center gap-x-10">
+          <ul class="flex flex-wrap font-mono text-sm" data-downloads="hero" aria-label="Сборки по платформам"></ul>
+          <p class="font-mono text-xs tracking-wider text-muted" data-release-version hidden></p>
+        </div>
+        <p class="mt-3 font-mono text-xs text-muted" data-downloads-note>Ссылок на сборки пока нет.</p>
+      </div>
+    </section>
+
+    <section class="border-t border-line-dark bg-char" aria-label="Цели проекта">
+      <div class="wrap grid md:grid-cols-3">
+        <article class="flex gap-5 md:max-lg:flex-col py-5 max-md:border-b max-md:border-line-dark md:border-r md:border-line-dark md:pr-6 lg:py-4">
+          <div class="min-w-0 flex-1">
+            <h2 class="font-mono text-sm tracking-wide uppercase"><span class="text-lg text-accent">01 /</span> Атмосфера оригинала</h2>
+            <p class="mt-2 font-mono text-xs leading-relaxed text-muted">Стремимся воссоздать облик, ощущение и настроение, которые сделали Gorky 17 особенной.</p>
+          </div>
+          <img class="h-20 w-28 shrink-0 object-cover sm:w-40 md:max-lg:w-full" src="../assets/thumb-atmosphere.webp" alt="" width="360" height="240" loading="lazy">
+        </article>
+        <article class="flex gap-5 md:max-lg:flex-col py-5 max-md:border-b max-md:border-line-dark md:border-r md:border-line-dark md:px-6 lg:py-4">
+          <div class="min-w-0 flex-1">
+            <h2 class="font-mono text-sm tracking-wide uppercase"><span class="text-lg text-accent">02 /</span> Новый фундамент</h2>
+            <p class="mt-2 font-mono text-xs leading-relaxed text-muted">Новый движок на Zig с упором на сопровождаемость и открытость.</p>
+          </div>
+          <img class="h-20 w-28 shrink-0 object-cover sm:w-40 md:max-lg:w-full" src="../assets/thumb-foundation.webp" alt="" width="360" height="240" loading="lazy">
+        </article>
+        <article class="flex gap-5 md:max-lg:flex-col py-5 md:pl-6 lg:py-4">
+          <div class="min-w-0 flex-1">
+            <h2 class="font-mono text-sm tracking-wide uppercase"><span class="text-lg text-accent">03 /</span> Открытая разработка</h2>
+            <p class="mt-2 font-mono text-xs leading-relaxed text-muted">Разрабатывается публично сообществом, которое верит, что великие игры заслуживают жить дальше.</p>
+          </div>
+          <img class="h-20 w-28 shrink-0 object-cover sm:w-40 md:max-lg:w-full" src="../assets/thumb-open.webp" alt="" width="360" height="240" loading="lazy">
+        </article>
+      </div>
+    </section>
+
+    <section id="project" class="bg-ivory py-10 text-ink lg:py-12" aria-labelledby="project-title">
+      <div class="wrap">
+        <div class="flex items-center gap-4 font-mono text-sm tracking-[.2em] uppercase">О проекте <span class="h-px w-16 bg-ink" aria-hidden="true"></span><span class="h-px flex-1 bg-line-light max-md:hidden" aria-hidden="true"></span></div>
+        <div class="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,36%)] 2xl:grid-cols-[minmax(0,1fr)_560px] lg:gap-0">
+          <h2 id="project-title" class="text-[clamp(3.25rem,7vw,6.25rem)] leading-[.9] font-extrabold tracking-tight lg:pr-10 2xl:mb-6 2xl:origin-top 2xl:scale-y-125">Старый мир. Новый движок.</h2>
+          <div class="flex flex-wrap items-start justify-between gap-8 border-line-light lg:ml-[-1px] lg:border-l lg:pl-10 lg:[&>p]:mt-1">
+            <p class="max-w-xs text-2xl leading-snug font-medium">Независимый проект сообщества, воссоздающий Gorky&nbsp;17 на&nbsp;Zig.</p>
+            <a class="border-2 border-accent px-5 py-1.5 font-mono text-3xl font-bold tracking-[.2em] text-accent hover:bg-accent hover:text-ink" data-config-link="zigUrl" aria-label="Язык программирования Zig">ZIG</a>
+            <span class="h-px basis-full bg-line-light max-lg:hidden" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="mt-8 grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_auto] lg:mt-6 lg:grid-cols-[minmax(0,50%)_minmax(0,1fr)_auto] lg:gap-0">
+          <img class="h-16 w-full object-cover object-[50%_14%] opacity-60 mix-blend-multiply grayscale brightness-[2.2] contrast-150 [mask-image:linear-gradient(90deg,transparent_15%,#000_40%,#000_85%,transparent)] max-lg:hidden lg:pr-10" src="../assets/hero-city.webp" alt="" width="1536" height="1024" loading="lazy">
+          <p class="border-l border-line-light pl-5 font-mono text-sm leading-relaxed lg:pr-12 lg:pl-10">Сохраняем атмосферу, механики и дух культовой классики в современной реимплементации с открытым исходным кодом.</p>
+          <p class="border-line-light font-mono text-[11px] leading-relaxed text-ink/70 md:border-l md:pl-7">Независимый фанатский проект.<br>Не связан с правообладателями<br class="max-md:hidden"> оригинальной игры.</p>
+        </div>
+
+        <section id="development" class="mt-10 grid gap-6 border-t border-line-light pt-8 md:grid-cols-[1fr_1fr]" aria-labelledby="dev-title">
+          <div>
+            <p class="font-mono text-sm tracking-[.2em] uppercase">Разработка</p>
+            <h2 id="dev-title" class="mt-3 text-4xl leading-none font-extrabold lg:text-5xl">Следите за работой в репозитории.</h2>
+          </div>
+          <div>
+            <p class="max-w-lg font-mono text-sm leading-relaxed">Исходный код, issues и информация о разработке публикуются в репозитории проекта.</p>
+            <div class="mt-6 flex flex-wrap gap-4">
+              <a class="btn border-ink hover:not-aria-disabled:bg-ink hover:not-aria-disabled:text-ivory" data-config-link="repositoryUrl">Репозиторий <span aria-hidden="true">↗</span></a>
+              <a class="btn border-ink hover:not-aria-disabled:bg-ink hover:not-aria-disabled:text-ivory" data-config-link="issuesUrl">Трекер задач <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="downloads" class="border-b border-line-dark py-10" aria-labelledby="downloads-title">
+      <div class="wrap grid gap-6 md:grid-cols-[1fr_1fr] md:items-end">
+        <div>
+          <p class="font-mono text-sm tracking-[.2em] text-accent uppercase">Загрузки</p>
+          <h2 id="downloads-title" class="mt-3 text-4xl leading-none font-extrabold lg:text-5xl">Скачать сборку</h2>
+        </div>
+        <div>
+          <p class="mb-2 font-mono text-xs tracking-wider text-accent" data-release-version hidden></p>
+          <ul class="grid gap-x-10 font-mono text-base sm:grid-cols-2" data-downloads aria-label="Сборки по платформам"></ul>
+          <p class="mt-3 font-mono text-xs text-muted" data-downloads-note>Ссылок на сборки пока нет.</p>
+          <a class="mt-4 inline-flex flex-wrap gap-x-2 font-mono text-sm underline underline-offset-4 aria-disabled:cursor-not-allowed aria-disabled:no-underline aria-disabled:opacity-60" data-config-link="releasesUrl">Все релизы <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Независимый фанатский проект. Не связан с правообладателями оригинальной игры.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Настройки cookies</button>
+    </div>
+  </footer>
+
+  <script src="../site-config.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>
