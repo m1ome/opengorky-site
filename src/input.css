@@ -55,3 +55,31 @@
   @apply inline-flex min-h-12 items-center justify-center gap-x-3 gap-y-0.5 flex-wrap border px-7 py-2 text-center font-mono text-sm transition-colors;
   @apply aria-disabled:cursor-not-allowed aria-disabled:border-dashed aria-disabled:opacity-60;
 }
+
+/* Editor docs (scripts/docs.mjs): long-form text, tables and function entries on ivory. */
+@layer components {
+  .doc { @apply font-mono text-[15px] leading-relaxed; }
+  .doc h1 { @apply mt-3 font-display text-[clamp(2.5rem,5vw,4rem)] leading-[.95] font-extrabold tracking-tight; }
+  .doc h2 { @apply mt-12 border-t border-line-light pt-6 font-display text-3xl font-extrabold; }
+  .doc h3 { @apply mt-8 font-display text-2xl font-medium; }
+  .doc p, .doc ul, .doc ol, .doc pre, .doc table { @apply mt-4; }
+  .doc ul { @apply list-disc pl-6; }
+  .doc ol { @apply list-decimal pl-6; }
+  .doc :is(ul, ol):not(.list-none) li + li { @apply mt-1.5; }
+  .doc a { @apply underline underline-offset-4 hover:text-accent; }
+  .doc code { @apply bg-ink/[.07] px-1 text-[.92em] break-words; }
+  .doc pre { @apply overflow-x-auto bg-ink p-4 text-sm text-ivory; }
+  .doc pre code, .doc h1 code { @apply bg-transparent p-0; }
+  .doc table { @apply w-full border-collapse text-sm; }
+  .doc th { @apply border-b-2 border-ink py-2 pr-4 text-left align-bottom; }
+  .doc td { @apply border-b border-line-light py-2 pr-4 align-top; }
+  .doc kbd { @apply border border-line-light px-1.5 text-[.9em]; }
+  .doc .note { @apply mt-6 border-l-4 border-accent bg-accent/10 px-4 py-3; }
+  .doc .fn { @apply mt-8 border-t border-line-light pt-5; }
+  .doc .fn h3 { @apply mt-0 font-mono text-base font-normal; }
+  .doc .fn h3 code { @apply bg-transparent p-0 font-bold; }
+  .doc .fn-meta:empty { @apply hidden; }
+  .doc .fn-meta { @apply mt-2 flex flex-wrap gap-2; }
+  .doc .badge { @apply border border-line-light px-2 py-0.5 text-xs tracking-wide; }
+  .doc .pager { @apply mt-14 flex justify-between gap-6 border-t border-line-light pt-5 text-sm; }
+}

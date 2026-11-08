@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>battle:: Battle — Open Gorky Editor</title>
+  <meta name="description" content="The battle as a whole: tiles, turns, the bomb, battle variables, spawning fighters, victory and defeat.">
+  <link rel="canonical" href="https://opengorky.app/editor/reference/battle.html">
+  
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/reference/battle.html">
+  <meta property="og:title" content="battle:: Battle — Open Gorky Editor">
+  <meta property="og:description" content="The battle as a whole: tiles, turns, the bomb, battle variables, spawning fighters, victory and defeat.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../index.html" aria-label="Open Gorky — home">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../ru/editor/" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/projects.html">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../editor/reference/battle.html" aria-current="page">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1><code>battle</code> — Battle</h1>
+<p>The battle as a whole: tiles, turns, the bomb, battle variables, spawning fighters, victory and defeat. Functions without an original Classic name are OpenGorky only; outside battle they do nothing and return 0 or <code>nil</code>.</p>
+
+<h2 id="summary">Summary</h2>
+
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#PlaceProp"><code>battle::PlaceProp</code></a></td><td>Places a battle object at a fractional grid tile (not snapped to the tile center), rotated by angle degrees.</td></tr><tr><td class="whitespace-nowrap"><a href="#IsFreeTile"><code>battle::IsFreeTile</code></a></td><td>True if the battle grid tile is inside the grid, walkable and free (false outside battle).</td></tr><tr><td class="whitespace-nowrap"><a href="#GetTurnNo"><code>battle::GetTurnNo</code></a></td><td>Returns the current battle turn number, 0 outside battle.</td></tr><tr><td class="whitespace-nowrap"><a href="#Nearest"><code>battle::Nearest</code></a></td><td>OpenGorky only (the original exe has no such function), for fighter evaluation: returns the living fighter of the side nearest to the tile (dx² + dy²), nil if there is none.</td></tr><tr><td class="whitespace-nowrap"><a href="#EndTurn"><code>battle::EndTurn</code></a></td><td>Ends the current side's turn in battle.</td></tr><tr><td class="whitespace-nowrap"><a href="#PutLargeTimeBomb"><code>battle::PutLargeTimeBomb</code></a></td><td>Places a large time bomb on a battle tile; after 6 enemy turns it explodes and everyone dies.</td></tr><tr><td class="whitespace-nowrap"><a href="#GetVar"><code>battle::GetVar</code></a></td><td>The value of a battle variable (nil if not set); battle variables live until the end of the battle.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetVar"><code>battle::SetVar</code></a></td><td>Sets a battle variable; every fighter's OnVar(name, value) hears it.</td></tr><tr><td class="whitespace-nowrap"><a href="#AddVar"><code>battle::AddVar</code></a></td><td>Adds to a battle variable and returns the new value; every fighter's OnVar(name, value) hears it.</td></tr><tr><td class="whitespace-nowrap"><a href="#SpawnEnemy"><code>battle::SpawnEnemy</code></a></td><td>Puts a new fighter into the battle on free tile (x, y) (for a large fighter, its top-left tile).</td></tr><tr><td class="whitespace-nowrap"><a href="#SpawnHero"><code>battle::SpawnHero</code></a></td><td>Like <a href="battle.html#SpawnEnemy"><code>battle::SpawnEnemy</code></a>, but the fighter is on the heroes' side and is controlled by the player: it can be selected and given a turn like a hero (its death, like a hero's death, is a defeat).</td></tr><tr><td class="whitespace-nowrap"><a href="#SpawnCivilian"><code>battle::SpawnCivilian</code></a></td><td>Like <a href="battle.html#SpawnEnemy"><code>battle::SpawnEnemy</code></a>, but the fighter is on nobody's side (<code>side</code> is <code>&quot;civilian&quot;</code>): both heroes and enemies attack it, and it does not count toward victory or defeat (a script can declare the outcome: <a href="battle.html#Lose"><code>battle::Lose</code></a>, <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§15.2</a>).</td></tr><tr><td class="whitespace-nowrap"><a href="#Lose"><code>battle::Lose</code></a></td><td>The battle ends in defeat, as when the heroes die (game over): at the next end-of-battle check (after the current action).</td></tr><tr><td class="whitespace-nowrap"><a href="#Win"><code>battle::Win</code></a></td><td>The battle ends in victory, as when the last enemy dies: at the next end-of-battle check (after the current action) — reward, <code>OnBattleEnd</code>.</td></tr></tbody></table></div>
+<h2 id="functions">Functions</h2>
+<section class="fn" id="PlaceProp">
+  <h3><a class="no-underline" href="#PlaceProp"><code>battle::PlaceProp(string, float, float, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>PlaceCombatActor</code></span></p>
+  <p>Places a battle object at a fractional grid tile (not snapped to the tile center), rotated by angle degrees. Returns 1 on success, otherwise 0.</p>
+</section>
+<section class="fn" id="IsFreeTile">
+  <h3><a class="no-underline" href="#IsFreeTile"><code>battle::IsFreeTile(int, int) → bool</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AIFreeTile</code></span></p>
+  <p>True if the battle grid tile is inside the grid, walkable and free (false outside battle).</p>
+</section>
+<section class="fn" id="GetTurnNo">
+  <h3><a class="no-underline" href="#GetTurnNo"><code>battle::GetTurnNo() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AIGetTurnNo</code></span></p>
+  <p>Returns the current battle turn number, 0 outside battle.</p>
+</section>
+<section class="fn" id="Nearest">
+  <h3><a class="no-underline" href="#Nearest"><code>battle::Nearest(list, string) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleNearest</code></span></p>
+  <p>OpenGorky only (the original exe has no such function), for fighter evaluation: returns the living fighter of the side nearest to the tile (dx² + dy²), nil if there is none.</p>
+</section>
+<section class="fn" id="EndTurn">
+  <h3><a class="no-underline" href="#EndTurn"><code>battle::EndTurn() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>EndTurnGlobal</code></span></p>
+  <p>Ends the current side's turn in battle.</p>
+</section>
+<section class="fn" id="PutLargeTimeBomb">
+  <h3><a class="no-underline" href="#PutLargeTimeBomb"><code>battle::PutLargeTimeBomb(int, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>PutLargeTimeBomb</code></span></p>
+  <p>Places a large time bomb on a battle tile; after 6 enemy turns it explodes and everyone dies. Returns 1 if placed, 0 if the tile is off the map.</p>
+</section>
+<section class="fn" id="GetVar">
+  <h3><a class="no-underline" href="#GetVar"><code>battle::GetVar(string name) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleGetVar</code></span></p>
+  <p>The value of a battle variable (nil if not set); battle variables live until the end of the battle.</p>
+</section>
+<section class="fn" id="SetVar">
+  <h3><a class="no-underline" href="#SetVar"><code>battle::SetVar(string name, any value) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleSetVar</code></span></p>
+  <p>Sets a battle variable; every fighter's OnVar(name, value) hears it.</p>
+</section>
+<section class="fn" id="AddVar">
+  <h3><a class="no-underline" href="#AddVar"><code>battle::AddVar(string name, any delta) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleAddVar</code></span></p>
+  <p>Adds to a battle variable and returns the new value; every fighter's OnVar(name, value) hears it.</p>
+</section>
+<section class="fn" id="SpawnEnemy">
+  <h3><a class="no-underline" href="#SpawnEnemy"><code>battle::SpawnEnemy(character fighter, int x, int y) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleSpawnEnemy</code></span></p>
+  <p>Puts a new fighter into the battle on free tile (x, y) (for a large fighter, its top-left tile). <code>fighter</code> is a class key as the rules name it (<code>&quot;ft_hornet&quot;</code>: the fighter that includes this script, like a level fighter), or a <code>.ftr</code> file; in an OpenGorky project, a fighter archetype (<code>~c&quot;characters::grandma_child&quot;</code>, <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§10.9</a>): the object of its block with its nested weapons, named after the last part of the path. The object is named after it (<code>ft_hornet</code>, <code>ft_hornet_2</code>…). The fighter gets the native and scripted abilities of its <code>Abilities</code> row and <code>OnSpawn</code>, like a fighter entering battle. Weapons come from the <code>weapons</code> field (<code>&quot;a.wpn, b.wpn&quot;</code>); if it is absent, copies of the weapons of the first fighter of the same class in the world; if there is none, only <code>MonsterAttack</code> rows with <code>give</code>. Returns the object name or <code>nil</code>: outside battle, no such class, the tile is outside the grid or occupied. The fighter is on the enemy side and acts under AI, like any enemy.</p>
+</section>
+<section class="fn" id="SpawnHero">
+  <h3><a class="no-underline" href="#SpawnHero"><code>battle::SpawnHero(character fighter, int x, int y) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleSpawnHero</code></span></p>
+  <p>Like <a href="battle.html#SpawnEnemy"><code>battle::SpawnEnemy</code></a>, but the fighter is on the heroes' side and is controlled by the player: it can be selected and given a turn like a hero (its death, like a hero's death, is a defeat). It does not join the party: after the battle it stays at the location.</p>
+</section>
+<section class="fn" id="SpawnCivilian">
+  <h3><a class="no-underline" href="#SpawnCivilian"><code>battle::SpawnCivilian(character fighter, int x, int y, ?string ai) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleSpawnCivilian</code></span></p>
+  <p>Like <a href="battle.html#SpawnEnemy"><code>battle::SpawnEnemy</code></a>, but the fighter is on nobody's side (<code>side</code> is <code>&quot;civilian&quot;</code>): both heroes and enemies attack it, and it does not count toward victory or defeat (a script can declare the outcome: <a href="battle.html#Lose"><code>battle::Lose</code></a>, <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§15.2</a>). <code>ai</code>: <code>&quot;dummy&quot;</code> (default) — stands still and does nothing; <code>&quot;normal&quot;</code> — acts on the enemies' turn under its class's AI and attacks both heroes and enemies. Any other value gives <code>nil</code>.</p>
+</section>
+<section class="fn" id="Lose">
+  <h3><a class="no-underline" href="#Lose"><code>battle::Lose() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleLose</code></span></p>
+  <p>The battle ends in defeat, as when the heroes die (game over): at the next end-of-battle check (after the current action). 1; 0 outside battle.</p>
+</section>
+<section class="fn" id="Win">
+  <h3><a class="no-underline" href="#Win"><code>battle::Win() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>BattleWin</code></span></p>
+  <p>The battle ends in victory, as when the last enemy dies: at the next end-of-battle check (after the current action) — reward, <code>OnBattleEnd</code>. 1; 0 outside battle.</p>
+</section>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>item:: Items and weapons — Open Gorky Editor</title>
+  <meta name="description" content="Items and weapons.">
+  <link rel="canonical" href="https://opengorky.app/editor/reference/item.html">
+  
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/reference/item.html">
+  <meta property="og:title" content="item:: Items and weapons — Open Gorky Editor">
+  <meta property="og:description" content="Items and weapons.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../index.html" aria-label="Open Gorky — home">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../ru/editor/" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/projects.html">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../editor/reference/item.html" aria-current="page">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1><code>item</code> — Items and weapons</h1>
+<p>Items and weapons. Where Classic writes <code>&quot;this&quot;</code>, OG Script writes <code>host</code>.</p>
+
+<h2 id="summary">Summary</h2>
+
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#New"><code>item::New</code></a></td><td>Creates an item of this class.</td></tr><tr><td class="whitespace-nowrap"><a href="#NewWeapon"><code>item::NewWeapon</code></a></td><td>Creates a weapon of this class.</td></tr><tr><td class="whitespace-nowrap"><a href="#Animation"><code>item::Animation</code></a></td><td>Plays an animation of the item's model once and holds the last frame; reverse 1 plays it backwards (a box closes with &quot;box&quot; reversed).</td></tr><tr><td class="whitespace-nowrap"><a href="#SetPos"><code>item::SetPos</code></a></td><td>Moves the item to world coordinates.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetAngle"><code>item::SetAngle</code></a></td><td>Sets the item's rotation angle in radians.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetNameID"><code>item::SetNameID</code></a></td><td>Sets the item's classic_id (name/type identifier).</td></tr><tr><td class="whitespace-nowrap"><a href="#GetNameID"><code>item::GetNameID</code></a></td><td>Returns the item's classic_id, or -1 if the object does not exist or is not an item.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetPlace"><code>item::SetPlace</code></a></td><td>Sets the item's place; 0 (ground) for an owned item removes the owner, and a hero holding it in hand is left without a weapon.</td></tr><tr><td class="whitespace-nowrap"><a href="#GetPlace"><code>item::GetPlace</code></a></td><td>Returns the item's place (0 = ground), or -1 if the object does not exist or is not an item.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetVisible"><code>item::SetVisible</code></a></td><td>Shows (1) or hides (0) the item.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetFuncID"><code>item::SetFuncID</code></a></td><td>Sets the item's action: the name of an Action rules row (&quot;Close&quot;, &quot;walk&quot;, &quot;none&quot;) or its number (its action field).</td></tr><tr><td class="whitespace-nowrap"><a href="#ActionId"><code>object::ActionId</code></a></td><td>OpenGorky only (the original exe has no such function), for comparing the action field: the action number by Action row name (&quot;walk&quot; −1, &quot;none&quot; 0), 0 if there is no such row.</td></tr><tr><td class="whitespace-nowrap"><a href="#GetType"><code>item::GetType</code></a></td><td>Returns the item's kind (<code>kind</code>; for a weapon, <code>damage_kind</code>, as in the exe), or -1 if the object does not exist or is not an item.</td></tr><tr><td class="whitespace-nowrap"><a href="#EnableWalkCircle"><code>item::EnableWalkCircle</code></a></td><td>Makes .wm cells within the item's walk_block_radius walkable (in background pixels, if at least 2).</td></tr><tr><td class="whitespace-nowrap"><a href="#DisableWalkCircle"><code>item::DisableWalkCircle</code></a></td><td>Closes .wm cells within the item's walk_block_radius (in background pixels, if at least 2).</td></tr><tr><td class="whitespace-nowrap"><a href="#HasAmmo"><code>item::HasAmmo</code></a></td><td>True if the actor has an item whose classic_id equals the weapon's ammo and whose count is above 0.</td></tr></tbody></table></div>
+<h2 id="functions">Functions</h2>
+<section class="fn" id="New">
+  <h3><a class="no-underline" href="#New"><code>item::New(string, string, ?string, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_New</code></span></p>
+  <p>Creates an item of this class. A string third argument is the owner, a number is the count; the fourth argument, if present, is the count (for example, the number of rounds).</p>
+</section>
+<section class="fn" id="NewWeapon">
+  <h3><a class="no-underline" href="#NewWeapon"><code>item::NewWeapon(string, string, ?string, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Weapon_New</code></span></p>
+  <p>Creates a weapon of this class. A string third argument is the owner, a number is the count; the fourth argument, if present, is the count.</p>
+</section>
+<section class="fn" id="Animation">
+  <h3><a class="no-underline" href="#Animation"><code>item::Animation(string, string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_Animation</code></span></p>
+  <p>Plays an animation of the item's model once and holds the last frame; reverse 1 plays it backwards (a box closes with &quot;box&quot; reversed).</p>
+</section>
+<section class="fn" id="SetPos">
+  <h3><a class="no-underline" href="#SetPos"><code>item::SetPos(string, float, float, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_SetPos</code></span></p>
+  <p>Moves the item to world coordinates. Another form (item, &quot;area&quot;, point, z): places it at a point of the zone's polygon (-1 = the control point) on the floor, raised by z.</p>
+</section>
+<section class="fn" id="SetAngle">
+  <h3><a class="no-underline" href="#SetAngle"><code>item::SetAngle(string, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_SetAngle</code></span></p>
+  <p>Sets the item's rotation angle in radians.</p>
+</section>
+<section class="fn" id="SetNameID">
+  <h3><a class="no-underline" href="#SetNameID"><code>item::SetNameID(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_SetNameID</code></span></p>
+  <p>Sets the item's classic_id (name/type identifier).</p>
+</section>
+<section class="fn" id="GetNameID">
+  <h3><a class="no-underline" href="#GetNameID"><code>item::GetNameID(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_GetNameID</code></span></p>
+  <p>Returns the item's classic_id, or -1 if the object does not exist or is not an item.</p>
+</section>
+<section class="fn" id="SetPlace">
+  <h3><a class="no-underline" href="#SetPlace"><code>item::SetPlace(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_SetPlace</code></span></p>
+  <p>Sets the item's place; 0 (ground) for an owned item removes the owner, and a hero holding it in hand is left without a weapon.</p>
+</section>
+<section class="fn" id="GetPlace">
+  <h3><a class="no-underline" href="#GetPlace"><code>item::GetPlace(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_GetPlace</code></span></p>
+  <p>Returns the item's place (0 = ground), or -1 if the object does not exist or is not an item.</p>
+</section>
+<section class="fn" id="SetVisible">
+  <h3><a class="no-underline" href="#SetVisible"><code>item::SetVisible(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_SetVisible</code></span></p>
+  <p>Shows (1) or hides (0) the item.</p>
+</section>
+<section class="fn" id="SetFuncID">
+  <h3><a class="no-underline" href="#SetFuncID"><code>item::SetFuncID(string, any) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_SetFuncID</code></span></p>
+  <p>Sets the item's action: the name of an Action rules row (&quot;Close&quot;, &quot;walk&quot;, &quot;none&quot;) or its number (its action field).</p>
+</section>
+<section class="fn" id="ActionId">
+  <h3><a class="no-underline" href="#ActionId"><code>object::ActionId(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActionId</code></span></p>
+  <p>OpenGorky only (the original exe has no such function), for comparing the action field: the action number by Action row name (&quot;walk&quot; −1, &quot;none&quot; 0), 0 if there is no such row.</p>
+</section>
+<section class="fn" id="GetType">
+  <h3><a class="no-underline" href="#GetType"><code>item::GetType(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_GetType</code></span></p>
+  <p>Returns the item's kind (<code>kind</code>; for a weapon, <code>damage_kind</code>, as in the exe), or -1 if the object does not exist or is not an item.</p>
+</section>
+<section class="fn" id="EnableWalkCircle">
+  <h3><a class="no-underline" href="#EnableWalkCircle"><code>item::EnableWalkCircle(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_EnableWalkCircle</code></span></p>
+  <p>Makes .wm cells within the item's walk_block_radius walkable (in background pixels, if at least 2).</p>
+</section>
+<section class="fn" id="DisableWalkCircle">
+  <h3><a class="no-underline" href="#DisableWalkCircle"><code>item::DisableWalkCircle(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Item_DisableWalkCircle</code></span></p>
+  <p>Closes .wm cells within the item's walk_block_radius (in background pixels, if at least 2).</p>
+</section>
+<section class="fn" id="HasAmmo">
+  <h3><a class="no-underline" href="#HasAmmo"><code>item::HasAmmo(string, string) → bool</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_HaveAmmoForWeapon</code></span></p>
+  <p>True if the actor has an item whose classic_id equals the weapon's ammo and whose count is above 0.</p>
+</section>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

@@ -21,7 +21,7 @@ const rel = await res.json();
 if (rel.draft) fail(`${rel.tag_name} is a draft`);
 
 const have = new Set(rel.assets.map((a) => a.name));
-const missing = cfg.downloads.map((d) => d.asset).filter((a) => a && !have.has(a));
+const missing = [...cfg.downloads, ...(cfg.editorDownloads || [])].map((d) => d.asset).filter((a) => a && !have.has(a));
 if (missing.length) fail(`${rel.tag_name} is missing assets: ${missing.join(", ")}`);
 
 const out = src.replace(/^(\s*version:\s*)("[^"]*"|null)/m, `$1${JSON.stringify(rel.tag_name)}`);

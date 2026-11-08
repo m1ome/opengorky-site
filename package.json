@@ -4,7 +4,8 @@
   "scripts": {
     "build": "tailwindcss -i src/input.css -o styles.css --minify",
     "dev": "tailwindcss -i src/input.css -o styles.css --watch",
-    "release": "node scripts/release.mjs"
+    "release": "node scripts/release.mjs",
+    "docs": "node scripts/docs.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",

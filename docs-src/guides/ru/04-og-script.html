@@ -1,0 +1,33 @@
+<h1>OG Script</h1>
+<p>OG Script — язык скриптов проектов OpenGorky. На нём пишется код уровней, объектов, бойцов и хуки игры. Здесь самое главное.</p>
+
+<h2 id="where">Где живёт код</h2>
+<ul>
+  <li><code>src/game.ogs</code>: хуки игры, например <code>OnDamage(attacker, target, weapon, amount)</code>, <code>OnTurnStart(side, turn)</code>, <code>OnBattleEnd(won)</code> и <code>OnLevelEnter(level)</code>.</li>
+  <li>Блоки уровней и объектов в <code>src/locations/</code> и <code>src/battles/</code>: их события и функции.</li>
+  <li><code>src/rules/*.ogs</code>: правила движка строками вызовов.</li>
+  <li>Компоненты: поведение, которое подключается к бойцу, объекту или игре.</li>
+</ul>
+
+<h2 id="example">Пример</h2>
+<p>Код пути на уровне: когда персонаж проходит первую точку мостков вперёд, он переходит на походку по мосткам, а на второй точке возвращается к обычной.</p>
+<pre><code>level "01_port" {
+    path deska {
+        link = [182, 22, 189, 11];
+        points = [
+            PathPoint(x = 1460, y = 180, angle = 0.0, z = 135),
+            PathPoint(x = 1516, y = 92, angle = 0.0, z = 135),
+        ];
+        fn OnNode(no, dir, walker) {
+            if (dir == 1 and no == 0) path::SetWalkAnimation("walk_footbridge");
+            if (dir == 1 and no == 1) path::SetWalkAnimation("walk");
+        }
+    }
+}</code></pre>
+
+<h2 id="builtins">Встроенные функции</h2>
+<p>Встроенные функции разложены по пакетам: <code>fighter::SetHp(host, 1)</code>. Если открыть пакет через <code>use fighter;</code>, можно писать просто <code>SetHp(host, 1)</code>. Там, где ожидается имя объекта, подходит и ссылка: <code>host</code>, <code>@grandma</code>, <code>attacker</code>. Имена Classic (<code>FighterSetHp</code>) остаются в скриптах Classic, а редактор переводит код между двумя языками.</p>
+<p>Все пакеты и функции собраны в справочнике <a href="../../editor/reference/">встроенных функций</a> (на английском).</p>
+
+<h2 id="more">Полное описание языка</h2>
+<p>Типы, компоненты и трейты, блоки данных, события, скриптовые способности, ошибки и детерминизм описаны в <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">справочнике языка OG Script</a> (на английском).</p>

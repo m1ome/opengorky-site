@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>actor:: Actor — Open Gorky Editor</title>
+  <meta name="description" content="Actor: registering the model and animations (creation events), the command queue, state, attachment and link points.">
+  <link rel="canonical" href="https://opengorky.app/editor/reference/actor.html">
+  
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/reference/actor.html">
+  <meta property="og:title" content="actor:: Actor — Open Gorky Editor">
+  <meta property="og:description" content="Actor: registering the model and animations (creation events), the command queue, state, attachment and link points.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../index.html" aria-label="Open Gorky — home">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../ru/editor/" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/projects.html">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../editor/reference/actor.html" aria-current="page">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1><code>actor</code> — Actor</h1>
+<p>Actor: registering the model and animations (creation events), the command queue, state, attachment and link points. Functions without an actor argument act on <code>host</code> (the exe has no form for another actor).</p>
+
+<h2 id="summary">Summary</h2>
+<h3>Model and animations (on <code>host</code>, usually in creation events)</h3>
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#RegisterAnimation"><code>actor::RegisterAnimation</code></a></td><td>Maps a logical animation name to an actual animation for state 0..8 of the current actor.</td></tr><tr><td class="whitespace-nowrap"><a href="#RegisterIdleAnimation"><code>actor::RegisterIdleAnimation</code></a></td><td>Adds an idle animation to the current actor for state 0..8 with a random-selection weight.</td></tr><tr><td class="whitespace-nowrap"><a href="#NotInPlaceAnimation"><code>actor::NotInPlaceAnimation</code></a></td><td>Marks an animation of the current actor as displacing (not in place): its offsets are measured from the reference animation.</td></tr><tr><td class="whitespace-nowrap"><a href="#ReferenceAnimation"><code>actor::ReferenceAnimation</code></a></td><td>Sets the reference animation of the current actor; offsets of not-in-place animations are measured from its first frame.</td></tr><tr><td class="whitespace-nowrap"><a href="#RegisterExtraBody"><code>actor::RegisterExtraBody</code></a></td><td>Gives the current actor an extra body: a mesh drawn at the actor's position, in slot 0…3 (replacing the previous one); with still 0 the actor's animations play on it, otherwise it holds the first frame.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetWalkSpeed"><code>actor::SetWalkSpeed</code></a></td><td>Sets the current actor's movement speed for a walk animation, in world pixels per tick; speed must be a float.</td></tr><tr><td class="whitespace-nowrap"><a href="#ModifyScale"><code>actor::ModifyScale</code></a></td><td>Multiplies the current actor's model scale by k.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetModelOffset"><code>actor::SetModelOffset</code></a></td><td>Sets the offset of the actor's model from its position; only the axes passed as float are changed.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetModelAngle"><code>actor::SetModelAngle</code></a></td><td>Sets the orientation correction of the current actor's model in degrees; float only.</td></tr><tr><td class="whitespace-nowrap"><a href="#InitState"><code>actor::InitState</code></a></td><td>Sets the current actor's state (selects its animation set).</td></tr></tbody></table></div>
+<h3>Control and the command queue (the actor is an argument)</h3>
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#Place"><code>actor::Place</code></a></td><td>Places an enabled actor at point index of an area (the angle comes from the point), on floor 0 or 1; the form actor::Place(name, x, y[, dir]) places it on battle grid tile (x, y), dir in eighths of a turn.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetAnimation"><code>actor::SetAnimation</code></a></td><td>Queues a one-shot animation for the actor after its current commands; &quot;idle&quot; is the idle of the current state.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetAsyncAnimation"><code>actor::SetAsyncAnimation</code></a></td><td>Queues a one-shot animation for the actor without waiting for it to finish; reverse plays it from the last frame.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetState"><code>actor::SetState</code></a></td><td>Sets the actor's state and, if the actor is not busy, picks a new idle.</td></tr><tr><td class="whitespace-nowrap"><a href="#QueueState"><code>actor::QueueState</code></a></td><td>Adds a stance change to the actor's command queue; in battle 0 and 1 become 7 and 8, and stance 4 also removes meshes from link points.</td></tr><tr><td class="whitespace-nowrap"><a href="#TextEffect"><code>actor::TextEffect</code></a></td><td>Shows popup text from string.tab with number text (or by a UI text key: <code>&quot;no_ammo&quot;</code>) above a placed actor (like &quot;No ammo&quot; in battle) and plays battle_noammo.</td></tr><tr><td class="whitespace-nowrap"><a href="#InArea"><code>actor::InArea</code></a></td><td>True if the actor's background position is inside the area.</td></tr><tr><td class="whitespace-nowrap"><a href="#Stop"><code>actor::Stop</code></a></td><td>Stops the actor: clears the command queue, the path and the current command.</td></tr><tr><td class="whitespace-nowrap"><a href="#Vibrato"><code>actor::Vibrato</code></a></td><td>Makes the actor sway with the given amplitude and phase step per tick; both must be floats.</td></tr><tr><td class="whitespace-nowrap"><a href="#WalkOnTrack"><code>actor::WalkOnTrack</code></a></td><td>Places the actor at point start of area track at the given height and leads it along the remaining points at walking speed, turning along the way.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetFloor"><code>actor::SetFloor</code></a></td><td>Puts the actor on floor 1 (.wm2) if floor is 1, otherwise on floor 0 (.wm).</td></tr><tr><td class="whitespace-nowrap"><a href="#QueueDelay"><code>actor::QueueDelay</code></a></td><td>Adds a pause of ticks ticks to the actor's command queue.</td></tr><tr><td class="whitespace-nowrap"><a href="#QueueJustifyPosition"><code>actor::QueueJustifyPosition</code></a></td><td>When the actor's command queue reaches this entry, shifts the actor by the offset of the displayed pose from the last frame of the current animation; the next animation starts without blending.</td></tr><tr><td class="whitespace-nowrap"><a href="#QueuePlace"><code>actor::QueuePlace</code></a></td><td>When the actor's command queue reaches this entry, places the actor at point index of the area (floor 0) and drops the rest of the queue; the next animation starts without blending.</td></tr><tr><td class="whitespace-nowrap"><a href="#QueueCall"><code>actor::QueueCall</code></a></td><td>When the actor's command queue reaches this entry, calls a script function of the object named like the actor.</td></tr><tr><td class="whitespace-nowrap"><a href="#Call"><code>actor::Call</code></a></td><td>Immediately calls a script function of the object named like the actor (not through the queue).</td></tr><tr><td class="whitespace-nowrap"><a href="#PutBackItem"><code>actor::PutBackItem</code></a></td><td>Queues putting a two-handed weapon from the hands onto the back: &quot;hide_back&quot;, meshes are removed from link points, the weapon goes to &quot;back&quot;, stance 0.</td></tr><tr><td class="whitespace-nowrap"><a href="#PutFrontItem"><code>actor::PutFrontItem</code></a></td><td>Queues taking a two-handed weapon from the back: after animation blending, meshes are removed from link points, stance 1, &quot;hide_back&quot; in reverse without waiting, 30 ticks, the weapon goes to &quot;two_hands&quot;.</td></tr></tbody></table></div>
+<h3>Attachment and link points</h3>
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#AttachByLink"><code>actor::AttachByLink</code></a></td><td>Attaches the actor to a link point of the parent's mesh, and it moves together with the parent.</td></tr><tr><td class="whitespace-nowrap"><a href="#Attach"><code>actor::Attach</code></a></td><td>Attaches the actor to the parent with the given offset, and it moves together with the parent: a and b horizontally in the parent's axes, c vertically, in world units; angle is added to the parent's angle.</td></tr><tr><td class="whitespace-nowrap"><a href="#DetachAllFrom"><code>actor::DetachAllFrom</code></a></td><td>Detaches all actors attached to the parent and resets their model offsets.</td></tr><tr><td class="whitespace-nowrap"><a href="#LinkRider"><code>actor::LinkRider</code></a></td><td>The actor rides the calling object at this link point of its mesh and is drawn together with it in its own animations (Smoke Rider pilots).</td></tr><tr><td class="whitespace-nowrap"><a href="#ShowLinkMesh"><code>actor::ShowLinkMesh</code></a></td><td>Shows a mesh at a link point of the current actor (Headnail's saws).</td></tr><tr><td class="whitespace-nowrap"><a href="#HideLinkMesh"><code>actor::HideLinkMesh</code></a></td><td>Removes the mesh from a link point of the current actor (the reverse of actor::ShowLinkMesh).</td></tr><tr><td class="whitespace-nowrap"><a href="#ShowItemInHand"><code>actor::ShowItemInHand</code></a></td><td>Shows an item's mesh in the actor's hand (point two_hands for two-handed items, otherwise one_hand).</td></tr><tr><td class="whitespace-nowrap"><a href="#HideAllLinkMeshes"><code>actor::HideAllLinkMeshes</code></a></td><td>Removes all meshes attached to the actor's link points.</td></tr></tbody></table></div>
+<h2 id="functions">Functions</h2>
+<section class="fn" id="RegisterAnimation">
+  <h3><a class="no-underline" href="#RegisterAnimation"><code>actor::RegisterAnimation(int, string, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>RegisterAnimation</code></span></p>
+  <p>Maps a logical animation name to an actual animation for state 0..8 of the current actor.</p>
+</section>
+<section class="fn" id="RegisterIdleAnimation">
+  <h3><a class="no-underline" href="#RegisterIdleAnimation"><code>actor::RegisterIdleAnimation(int, string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>RegisterIdleAnimation</code></span></p>
+  <p>Adds an idle animation to the current actor for state 0..8 with a random-selection weight. Without a weight nothing is registered.</p>
+</section>
+<section class="fn" id="NotInPlaceAnimation">
+  <h3><a class="no-underline" href="#NotInPlaceAnimation"><code>actor::NotInPlaceAnimation(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>NotInPlaceAnimation</code></span></p>
+  <p>Marks an animation of the current actor as displacing (not in place): its offsets are measured from the reference animation.</p>
+</section>
+<section class="fn" id="ReferenceAnimation">
+  <h3><a class="no-underline" href="#ReferenceAnimation"><code>actor::ReferenceAnimation(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ReferenceAnimation</code></span></p>
+  <p>Sets the reference animation of the current actor; offsets of not-in-place animations are measured from its first frame.</p>
+</section>
+<section class="fn" id="RegisterExtraBody">
+  <h3><a class="no-underline" href="#RegisterExtraBody"><code>actor::RegisterExtraBody(int, int, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>RegisterExtraBody</code></span></p>
+  <p>Gives the current actor an extra body: a mesh drawn at the actor's position, in slot 0…3 (replacing the previous one); with still 0 the actor's animations play on it, otherwise it holds the first frame. Types are strictly int, int, string. Not used in the game's scripts.</p>
+</section>
+<section class="fn" id="SetWalkSpeed">
+  <h3><a class="no-underline" href="#SetWalkSpeed"><code>actor::SetWalkSpeed(string, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorSetWalkSpeed</code></span></p>
+  <p>Sets the current actor's movement speed for a walk animation, in world pixels per tick; speed must be a float.</p>
+</section>
+<section class="fn" id="ModifyScale">
+  <h3><a class="no-underline" href="#ModifyScale"><code>actor::ModifyScale(float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorModifyScale</code></span></p>
+  <p>Multiplies the current actor's model scale by k.</p>
+</section>
+<section class="fn" id="SetModelOffset">
+  <h3><a class="no-underline" href="#SetModelOffset"><code>actor::SetModelOffset(string, float, float, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>SetActorAddVariables</code></span></p>
+  <p>Sets the offset of the actor's model from its position; only the axes passed as float are changed.</p>
+</section>
+<section class="fn" id="SetModelAngle">
+  <h3><a class="no-underline" href="#SetModelAngle"><code>actor::SetModelAngle(float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AdjustAngle</code></span></p>
+  <p>Sets the orientation correction of the current actor's model in degrees; float only.</p>
+</section>
+<section class="fn" id="InitState">
+  <h3><a class="no-underline" href="#InitState"><code>actor::InitState(int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>SetActorState</code></span></p>
+  <p>Sets the current actor's state (selects its animation set).</p>
+</section>
+<section class="fn" id="Place">
+  <h3><a class="no-underline" href="#Place"><code>actor::Place(string, string, int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>PlaceActor</code></span></p>
+  <p>Places an enabled actor at point index of an area (the angle comes from the point), on floor 0 or 1; the form actor::Place(name, x, y[, dir]) places it on battle grid tile (x, y), dir in eighths of a turn. Returns 1 if placement happened.</p>
+</section>
+<section class="fn" id="SetAnimation">
+  <h3><a class="no-underline" href="#SetAnimation"><code>actor::SetAnimation(string, string, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_SetAnimation</code></span></p>
+  <p>Queues a one-shot animation for the actor after its current commands; &quot;idle&quot; is the idle of the current state. noBlend = 1 means no blending with the previous animation.</p>
+</section>
+<section class="fn" id="SetAsyncAnimation">
+  <h3><a class="no-underline" href="#SetAsyncAnimation"><code>actor::SetAsyncAnimation(string, string, ?int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_SetAsyncAnimation</code></span></p>
+  <p>Queues a one-shot animation for the actor without waiting for it to finish; reverse plays it from the last frame. noBlend = 1 means no blending with the previous animation.</p>
+</section>
+<section class="fn" id="SetState">
+  <h3><a class="no-underline" href="#SetState"><code>actor::SetState(string, int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_SetState</code></span></p>
+  <p>Sets the actor's state and, if the actor is not busy, picks a new idle. flag = 1 means the next animation is not blended.</p>
+</section>
+<section class="fn" id="QueueState">
+  <h3><a class="no-underline" href="#QueueState"><code>actor::QueueState(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_QueueState</code></span></p>
+  <p>Adds a stance change to the actor's command queue; in battle 0 and 1 become 7 and 8, and stance 4 also removes meshes from link points. Not used in the game's scripts.</p>
+</section>
+<section class="fn" id="TextEffect">
+  <h3><a class="no-underline" href="#TextEffect"><code>actor::TextEffect(string, any) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_TextEffect</code></span></p>
+  <p>Shows popup text from string.tab with number text (or by a UI text key: <code>&quot;no_ammo&quot;</code>) above a placed actor (like &quot;No ammo&quot; in battle) and plays battle_noammo.</p>
+</section>
+<section class="fn" id="InArea">
+  <h3><a class="no-underline" href="#InArea"><code>actor::InArea(string, string) → bool</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorInArea</code></span></p>
+  <p>True if the actor's background position is inside the area.</p>
+</section>
+<section class="fn" id="Stop">
+  <h3><a class="no-underline" href="#Stop"><code>actor::Stop(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>StopActor</code></span></p>
+  <p>Stops the actor: clears the command queue, the path and the current command.</p>
+</section>
+<section class="fn" id="Vibrato">
+  <h3><a class="no-underline" href="#Vibrato"><code>actor::Vibrato(string, float, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Vibrato</code></span></p>
+  <p>Makes the actor sway with the given amplitude and phase step per tick; both must be floats.</p>
+</section>
+<section class="fn" id="WalkOnTrack">
+  <h3><a class="no-underline" href="#WalkOnTrack"><code>actor::WalkOnTrack(string, string, ?float, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>WalkOnSceneryTrack</code></span></p>
+  <p>Places the actor at point start of area track at the given height and leads it along the remaining points at walking speed, turning along the way.</p>
+</section>
+<section class="fn" id="SetFloor">
+  <h3><a class="no-underline" href="#SetFloor"><code>actor::SetFloor(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>SetActorMap</code></span></p>
+  <p>Puts the actor on floor 1 (.wm2) if floor is 1, otherwise on floor 0 (.wm).</p>
+</section>
+<section class="fn" id="QueueDelay">
+  <h3><a class="no-underline" href="#QueueDelay"><code>actor::QueueDelay(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_QueueDelay</code></span></p>
+  <p>Adds a pause of ticks ticks to the actor's command queue.</p>
+</section>
+<section class="fn" id="QueueJustifyPosition">
+  <h3><a class="no-underline" href="#QueueJustifyPosition"><code>actor::QueueJustifyPosition(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_QueueJustifyPosition</code></span></p>
+  <p>When the actor's command queue reaches this entry, shifts the actor by the offset of the displayed pose from the last frame of the current animation; the next animation starts without blending.</p>
+</section>
+<section class="fn" id="QueuePlace">
+  <h3><a class="no-underline" href="#QueuePlace"><code>actor::QueuePlace(string, string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_QueuePlace</code></span></p>
+  <p>When the actor's command queue reaches this entry, places the actor at point index of the area (floor 0) and drops the rest of the queue; the next animation starts without blending.</p>
+</section>
+<section class="fn" id="QueueCall">
+  <h3><a class="no-underline" href="#QueueCall"><code>actor::QueueCall(string, string, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_QueueGOScriptFunc</code></span></p>
+  <p>When the actor's command queue reaches this entry, calls a script function of the object named like the actor.</p>
+</section>
+<section class="fn" id="Call">
+  <h3><a class="no-underline" href="#Call"><code>actor::Call(string, string, string) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_GORunFun</code></span></p>
+  <p>Immediately calls a script function of the object named like the actor (not through the queue).</p>
+</section>
+<section class="fn" id="PutBackItem">
+  <h3><a class="no-underline" href="#PutBackItem"><code>actor::PutBackItem(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorPutBackItem</code></span></p>
+  <p>Queues putting a two-handed weapon from the hands onto the back: &quot;hide_back&quot;, meshes are removed from link points, the weapon goes to &quot;back&quot;, stance 0. Does nothing without a two-handed item in hand. Not used in the game's scripts.</p>
+</section>
+<section class="fn" id="PutFrontItem">
+  <h3><a class="no-underline" href="#PutFrontItem"><code>actor::PutFrontItem(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorPutFrontItem</code></span></p>
+  <p>Queues taking a two-handed weapon from the back: after animation blending, meshes are removed from link points, stance 1, &quot;hide_back&quot; in reverse without waiting, 30 ticks, the weapon goes to &quot;two_hands&quot;. Not used in the game's scripts.</p>
+</section>
+<section class="fn" id="AttachByLink">
+  <h3><a class="no-underline" href="#AttachByLink"><code>actor::AttachByLink(string, string, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AttachActorsByLink</code></span></p>
+  <p>Attaches the actor to a link point of the parent's mesh, and it moves together with the parent. Does nothing if the point does not exist.</p>
+</section>
+<section class="fn" id="Attach">
+  <h3><a class="no-underline" href="#Attach"><code>actor::Attach(string, string, float, float, float, float) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AttachActors</code></span></p>
+  <p>Attaches the actor to the parent with the given offset, and it moves together with the parent: a and b horizontally in the parent's axes, c vertically, in world units; angle is added to the parent's angle. All four must be floats. Not used in the game's scripts.</p>
+</section>
+<section class="fn" id="DetachAllFrom">
+  <h3><a class="no-underline" href="#DetachAllFrom"><code>actor::DetachAllFrom(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>DetachActorsFrom</code></span></p>
+  <p>Detaches all actors attached to the parent and resets their model offsets.</p>
+</section>
+<section class="fn" id="LinkRider">
+  <h3><a class="no-underline" href="#LinkRider"><code>actor::LinkRider(string, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>LinkActor</code></span></p>
+  <p>The actor rides the calling object at this link point of its mesh and is drawn together with it in its own animations (Smoke Rider pilots).</p>
+</section>
+<section class="fn" id="ShowLinkMesh">
+  <h3><a class="no-underline" href="#ShowLinkMesh"><code>actor::ShowLinkMesh(string, string, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActivateLink</code></span></p>
+  <p>Shows a mesh at a link point of the current actor (Headnail's saws). The port ignores the third argument.</p>
+</section>
+<section class="fn" id="HideLinkMesh">
+  <h3><a class="no-underline" href="#HideLinkMesh"><code>actor::HideLinkMesh(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>DeactivateLink</code></span></p>
+  <p>Removes the mesh from a link point of the current actor (the reverse of actor::ShowLinkMesh). Not used in the game's scripts.</p>
+</section>
+<section class="fn" id="ShowItemInHand">
+  <h3><a class="no-underline" href="#ShowItemInHand"><code>actor::ShowItemInHand(string, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_ActivateLink</code></span></p>
+  <p>Shows an item's mesh in the actor's hand (point two_hands for two-handed items, otherwise one_hand).</p>
+</section>
+<section class="fn" id="HideAllLinkMeshes">
+  <h3><a class="no-underline" href="#HideAllLinkMeshes"><code>actor::HideAllLinkMeshes(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>Actor_DeactivateAllLinks</code></span></p>
+  <p>Removes all meshes attached to the actor's link points.</p>
+</section>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

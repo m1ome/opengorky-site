@@ -2,7 +2,7 @@
 // null = intentionally unset. Unset links render as visibly unavailable controls.
 window.SITE_CONFIG = {
   // The one place to bump on release. Downloads and the version label use it; .github/workflows/release.yml rewrites this line.
-  version: "v0.1.0",
+  version: "v0.3.0",
   githubRepo: "m1ome/opengorky",
   // Google Analytics 4 Measurement ID, e.g. "G-XXXXXXXXXX". null = no analytics, no consent banner.
   // GA loads only after the visitor clicks Accept in the cookie banner.
@@ -18,6 +18,13 @@ window.SITE_CONFIG = {
     { platform: "macOS", arch: "Apple Silicon & Intel", asset: "OpenGorky-macos-x86_64-arm64.zip" },
     { platform: "Linux", arch: "x86_64", asset: "opengorky-linux-x86_64.tar.xz" },
     { platform: "Linux", arch: "aarch64", asset: "opengorky-linux-aarch64.tar.xz", hero: false }
+  ],
+  // The level editor's packages (editor/ pages), same release and version.
+  editorDownloads: [
+    { platform: "Windows", arch: "x86_64", asset: "opengorky-editor-windows-x86_64.zip" },
+    { platform: "macOS", arch: "Apple Silicon & Intel", asset: "OpenGorky-Editor-macos-x86_64-arm64.zip" },
+    { platform: "Linux", arch: "x86_64", asset: "opengorky-editor-linux-x86_64.tar.xz" },
+    { platform: "Linux", arch: "aarch64", asset: "opengorky-editor-linux-aarch64.tar.xz" }
   ],
   // categories: start = Getting started, project = The project, contribute = Contributing, config = Configuration.
   // Answers may contain \n for line breaks. ru = Russian text for /ru/ pages; missing -> English is shown.

@@ -1,0 +1,33 @@
+<h1>OG Script</h1>
+<p>OG Script is the scripting language of OpenGorky projects: the code of levels, objects, fighters and the game's hooks. Here is the short version.</p>
+
+<h2 id="where">Where code lives</h2>
+<ul>
+  <li><code>src/game.ogs</code>: the game's hooks, such as <code>OnDamage(attacker, target, weapon, amount)</code>, <code>OnTurnStart(side, turn)</code>, <code>OnBattleEnd(won)</code> and <code>OnLevelEnter(level)</code>.</li>
+  <li>Level and object blocks under <code>src/locations/</code> and <code>src/battles/</code>: their events and functions.</li>
+  <li><code>src/rules/*.ogs</code>: the engine's rules as call rows.</li>
+  <li>Components: behaviour attached to a fighter, an object or the game.</li>
+</ul>
+
+<h2 id="example">An example</h2>
+<p>A level path's code: when a walker passes the plank's first point going forward, it switches to the plank walk, and back to the normal walk at the second point.</p>
+<pre><code>level "01_port" {
+    path deska {
+        link = [182, 22, 189, 11];
+        points = [
+            PathPoint(x = 1460, y = 180, angle = 0.0, z = 135),
+            PathPoint(x = 1516, y = 92, angle = 0.0, z = 135),
+        ];
+        fn OnNode(no, dir, walker) {
+            if (dir == 1 and no == 0) path::SetWalkAnimation("walk_footbridge");
+            if (dir == 1 and no == 1) path::SetWalkAnimation("walk");
+        }
+    }
+}</code></pre>
+
+<h2 id="builtins">Calling built-ins</h2>
+<p>Built-in functions live in packages: <code>fighter::SetHp(host, 1)</code>. Open a package with <code>use fighter;</code> to write <code>SetHp(host, 1)</code>. Where an object name is expected, a reference works too: <code>host</code>, <code>@grandma</code>, <code>attacker</code>. The Classic names (<code>FighterSetHp</code>) stay valid in Classic scripts, and the editor translates between the two.</p>
+<p>All packages and their functions: <a href="reference/">built-in functions</a>.</p>
+
+<h2 id="more">The full language</h2>
+<p>Types, components and traits, data blocks, events, scripted abilities, errors and determinism are covered in the <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">OG Script language reference</a>.</p>

@@ -46,8 +46,9 @@
       : null;
   }
   document.querySelectorAll("[data-downloads]").forEach(function (list) {
-    var isHero = list.getAttribute("data-downloads") === "hero";
-    downloads.forEach(function (d) {
+    var kind = list.getAttribute("data-downloads");
+    var isHero = kind === "hero";
+    (kind === "editor" ? cfg.editorDownloads || [] : downloads).forEach(function (d) {
       if (isHero && d.hero === false) return;
       var url = assetUrl(d);
       var li = document.createElement("li");
@@ -69,7 +70,7 @@
       list.appendChild(li);
     });
   });
-  var anyAvailable = downloads.some(assetUrl);
+  var anyAvailable = downloads.concat(cfg.editorDownloads || []).some(assetUrl);
   document.querySelectorAll("[data-downloads-note]").forEach(function (n) { n.hidden = anyAvailable; });
   document.querySelectorAll("[data-release-version]").forEach(function (el) {
     el.textContent = T.version + cfg.version;
@@ -170,6 +171,46 @@
         setOpen(false);
         toggle.focus();
       }
+    });
+  }
+
+  // Editor docs search over editor/search-index.js: functions by OG Script or Classic name, guides by title.
+  var search = document.querySelector("[data-docs-search]");
+  var idx = window.EDITOR_INDEX;
+  if (search && idx) {
+    var q = search.querySelector("input");
+    var results = search.querySelector("ul");
+    var guides = (idx.guides[ru ? "ru" : "en"] || []).map(function (g) { return [g[0], "", search.dataset.guides + g[1], ""]; });
+    var refs = idx.fns.map(function (f) { return [f[0], f[1], search.dataset.base + f[2], f[3]]; });
+    var render = function () {
+      var term = q.value.trim().toLowerCase();
+      results.textContent = "";
+      results.hidden = !term;
+      if (!term) return;
+      var hits = guides.concat(refs).filter(function (r) {
+        return r[0].toLowerCase().indexOf(term) !== -1 || r[1].toLowerCase().indexOf(term) !== -1;
+      }).slice(0, 30);
+      hits.forEach(function (r) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = r[2];
+        a.className = "block border-b border-line-light px-3 py-2 hover:bg-ink/5 focus:bg-ink/5";
+        a.textContent = r[0];
+        if (r[3]) {
+          var d = document.createElement("span");
+          d.className = "block truncate text-xs text-ink/65";
+          d.textContent = (r[1] && r[1] !== r[0] ? r[1] + " · " : "") + r[3];
+          a.appendChild(d);
+        }
+        li.appendChild(a);
+        results.appendChild(li);
+      });
+      if (!hits.length) results.insertAdjacentHTML("beforeend", '<li class="px-3 py-2 text-ink/65">' + (ru ? "Ничего не найдено" : "No matches") + "</li>");
+    };
+    q.addEventListener("input", render);
+    q.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { q.value = ""; render(); }
+      if (e.key === "Enter") { var first = results.querySelector("a"); if (first) location.href = first.href; }
     });
   }
 

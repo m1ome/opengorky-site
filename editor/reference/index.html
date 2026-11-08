@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Built-in functions — Open Gorky Editor</title>
+  <meta name="description" content="Reference of the 140 built-in OG Script functions of the Open Gorky engine, by package.">
+  <link rel="canonical" href="https://opengorky.app/editor/reference/">
+  
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/reference/">
+  <meta property="og:title" content="Built-in functions — Open Gorky Editor">
+  <meta property="og:description" content="Reference of the 140 built-in OG Script functions of the Open Gorky engine, by package.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../index.html" aria-label="Open Gorky — home">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../ru/editor/" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/projects.html">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../editor/reference/" aria-current="page">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1>Built-in functions</h1>
+<p>Every function the engine gives to OG Script and Classic scripts, by package. The same descriptions appear in the editor's Reference (F1) and in its code completion. The full language is described in the <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">OG Script language reference</a>.</p>
+<p>The table is <code>src/builtins.zig</code>: 141 entries, each with a Classic name (the exe name, which Classic scripts use) and an OG Script name. In OG Script, built-ins live in 12 reserved packages (134 functions), and the root holds a core of three (<code>print</code>, <code>str</code>, <code>EqualsIgnoreCase</code>); three Classic functions are not needed in OG Script (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§16.14</a>). Descriptions are in <code>src/editor/api.zig</code>. A signature is written the way the table prints it: <code>result(parameter types)</code>, where <code>?</code> marks an optional parameter and <code>any</code> means any value (including the result of a script function). A <code>bool</code> result is a yes/no answer: <code>true</code>/<code>false</code> in OG Script, <code>int</code> 1/0 in Classic (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§4</a>).</p>
+<ul><li><strong>Name.</strong> In OG Script a built-in is called through its package: <a href="fighter.html#SetHp"><code>fighter::SetHp(host, 1)</code></a>, or the package is opened: <code>use fighter;</code> and then <code>SetHp(host, 1)</code> (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§8.2</a>). A Classic name (<code>FighterSetHp</code>) in OG Script is a link error with a hint about the path. Classic scripts use the exe names, as before; translation between Classic and OG Script (the OG Script view in the editor, <a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§20</a>) maps names using this same table.</li><li>The types in a signature are documentation. They are not yet checked on calls from OGS (<strong>planned</strong>: checking at link time). The number of arguments is not checked either (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§8.1</a>). The exception is the kind types <code>level</code>, <code>scene</code>, <code>sound</code>: they are strings, and a sigil of another kind there is a link error (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§6.8</a>). The <code>method</code> type is the name of a method of the calling component and is checked at link time (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§14.1</a>). A final parameter <code>type name...</code> takes all arguments from its position onward (<a href="events.html#Emit"><code>events::Emit</code></a>).</li><li>Parameter names exist only for OpenGorky-only functions (the signature names the parameters). Only these functions accept arguments by name.</li><li>Most functions are functions of the original game, with its behavior. Many of them are meant for Classic object creation events (registering animations) or for an actor's command queue. In battle handlers, the meaningful packages are mainly <code>battle</code>, <code>fighter</code> and <code>events</code>.</li><li>Where an object name is expected, you can pass a reference (<code>host</code>, <code>@grandma</code>, <code>attacker</code>).</li></ul>
+<h2 id="packages">Packages</h2>
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="core.html">Root: the core</a></td><td>No package; usable in any code.</td></tr><tr><td class="whitespace-nowrap"><a href="object.html"><code>object::</code></a></td><td>Objects. Any object by name: whether it exists, enable, disable, delete, its classic_id and class, calling its function.</td></tr><tr><td class="whitespace-nowrap"><a href="sound.html"><code>sound::</code></a></td><td>Sound. Sounds and ambient.</td></tr><tr><td class="whitespace-nowrap"><a href="actor.html"><code>actor::</code></a></td><td>Actor. Actor: registering the model and animations (creation events), the command queue, state, attachment and link points.</td></tr><tr><td class="whitespace-nowrap"><a href="path.html"><code>path::</code></a></td><td>Path scripts. Path script (<code>.pth</code>) functions: they act on the path node's actor — not on <code>host</code>, and without an actor argument.</td></tr><tr><td class="whitespace-nowrap"><a href="level.html"><code>level::</code></a></td><td>Level. Level: loading, the level counter (progress), the walk map, floors, global strings.</td></tr><tr><td class="whitespace-nowrap"><a href="hero.html"><code>hero::</code></a></td><td>Party. The hero party: the selected hero, who is in the party, enabling and placing heroes, whether any hero has something.</td></tr><tr><td class="whitespace-nowrap"><a href="scene.html"><code>scene::</code></a></td><td>Scenes and video. Everything that plays &quot;like a movie&quot;: scenes, dialogs, video, fades, the caption.</td></tr><tr><td class="whitespace-nowrap"><a href="gui.html"><code>gui::</code></a></td><td>Interface. Interface modes: panorama, scene mode, mode selection.</td></tr><tr><td class="whitespace-nowrap"><a href="item.html"><code>item::</code></a></td><td>Items and weapons. Items and weapons.</td></tr><tr><td class="whitespace-nowrap"><a href="battle.html"><code>battle::</code></a></td><td>Battle. The battle as a whole: tiles, turns, the bomb, battle variables, spawning fighters, victory and defeat.</td></tr><tr><td class="whitespace-nowrap"><a href="fighter.html"><code>fighter::</code></a></td><td>Fighter. A single fighter: health, level, skills, AI, damage, states, transformation.</td></tr><tr><td class="whitespace-nowrap"><a href="events.html"><code>events::</code></a></td><td>Events. The event bus between components (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§14.1</a>).</td></tr><tr><td class="whitespace-nowrap"><a href="classic-only.html">Classic only</a></td><td>These original functions have no OG Script name: the same thing is done differently.</td></tr></tbody></table></div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

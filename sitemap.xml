@@ -4,4 +4,31 @@
   <url><loc>https://opengorky.app/faq.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/faq.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/faq.html"/></url>
   <url><loc>https://opengorky.app/ru/</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/"/></url>
   <url><loc>https://opengorky.app/ru/faq.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/faq.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/faq.html"/></url>
+  <!-- docs -->
+  <url><loc>https://opengorky.app/editor/</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/"/></url>
+  <url><loc>https://opengorky.app/ru/editor/</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/"/></url>
+  <url><loc>https://opengorky.app/editor/getting-started.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/getting-started.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/getting-started.html"/></url>
+  <url><loc>https://opengorky.app/ru/editor/getting-started.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/getting-started.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/getting-started.html"/></url>
+  <url><loc>https://opengorky.app/editor/projects.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/projects.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/projects.html"/></url>
+  <url><loc>https://opengorky.app/ru/editor/projects.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/projects.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/projects.html"/></url>
+  <url><loc>https://opengorky.app/editor/editor-tour.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/editor-tour.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/editor-tour.html"/></url>
+  <url><loc>https://opengorky.app/ru/editor/editor-tour.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/editor-tour.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/editor-tour.html"/></url>
+  <url><loc>https://opengorky.app/editor/og-script.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/og-script.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/og-script.html"/></url>
+  <url><loc>https://opengorky.app/ru/editor/og-script.html</loc><xhtml:link rel="alternate" hreflang="en" href="https://opengorky.app/editor/og-script.html"/><xhtml:link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/og-script.html"/></url>
+  <url><loc>https://opengorky.app/editor/reference/</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/core.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/object.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/sound.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/actor.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/path.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/level.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/hero.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/scene.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/gui.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/item.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/battle.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/fighter.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/events.html</loc></url>
+  <url><loc>https://opengorky.app/editor/reference/classic-only.html</loc></url>
+  <!-- /docs -->
 </urlset>

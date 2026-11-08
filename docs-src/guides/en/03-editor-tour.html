@@ -1,0 +1,58 @@
+<h1>Editor tour</h1>
+<p>What each part of the editor window does: the asset tree, the pages for every kind of asset, the level tools, the code editor and the checks.</p>
+
+<h2 id="window">The window</h2>
+<ul>
+  <li><strong>Asset tree</strong> on the left, searchable. Assemblies (locations, battles, characters, items, scenes), components and raw assets (sounds, sprites, fonts…), and the project itself. Right-click to copy, paste or create.</li>
+  <li><strong>Centre</strong>: the open document, one tab each.</li>
+  <li><strong>Toolbar</strong>: <strong>Play</strong>, <strong>Fit</strong>, and the unsaved/saved state.</li>
+  <li><strong>Status bar</strong>: the project kind, the last action and the mod check's problem count.</li>
+</ul>
+
+<h2 id="levels">Locations and battles</h2>
+<p>A level opens as its map with tool panels:</p>
+<ul>
+  <li><strong>Objects</strong>: drag items, fighters, boxes and props. Right-click the map or a row to add an enemy, a hero, a box, an item or a prop, edit a box's contents or remove something. <kbd>Delete</kbd> removes the selected object. In battles, enemies can walk in at the start or stand on their tile, and props turn by the arrows next to them.</li>
+  <li><strong>Painting</strong>: the map's layers (walkable floor, areas, lights), painted with a brush. Each stroke is one undo step. A locked layer must be unlocked first.</li>
+  <li><strong>Paths</strong>, <strong>camera</strong>, <strong>lights</strong>, <strong>areas</strong> and <strong>triggers</strong>: the level's routes (stairs, ladders), view, lighting, zones and what happens in them.</li>
+</ul>
+<p>New levels can start from a blank picture: 640×480 to 2600×1916 in Classic, up to 8192×8192 in an OpenGorky project, in multiples of 8.</p>
+
+<h2 id="entries">Characters, weapons and items</h2>
+<p>Values on a class page apply to every such enemy or item in the game. A battle's own values for one enemy override them. <strong>Make a copy</strong> creates a new class, weapon, item, ammo or hero, and the page explains what the copy shares with the original. Models import from <code>.glb</code> and textures from PNG. Strikes, projectiles and effects are edited on their own pages. A <strong>test room</strong> puts a fighter into a hidden battle so you can try it. The <strong>test kit</strong> sets what the heroes carry there.</p>
+
+<h2 id="media">Scenes, texts and media</h2>
+<ul>
+  <li><strong>Scenes and dialogue</strong>: command lists and dialogue lines. A scene can be switched off.</li>
+  <li><strong>Texts</strong>: every game string. The editor warns when the game's code page or font lacks a character.</li>
+  <li><strong>Sounds</strong> and <strong>music</strong>: import WAV or MP3. The editor converts them to the game's format.</li>
+  <li><strong>Videos</strong>: import any video FFmpeg reads. Classic converts it to the game's ASF, an OpenGorky project keeps it as is.</li>
+  <li><strong>Fonts</strong>: draw missing characters from a TrueType font. <strong>Sprites</strong> and <strong>effects</strong>: paint, or import PNG frames.</li>
+</ul>
+
+<h2 id="rules">Game, rules and interface</h2>
+<p>In an OpenGorky project, the campaign page sets the new game, party, videos, music, experience, formulas and fighter states, plus the hooks of <code>src/game.ogs</code>. Rules pages cover experience levels, special values, AI profiles and actions. The interface page covers the main menu, windows and panel. The engine's tuning values (<code>adjust.kdt</code>, or <code>rules/settings.ogs</code> in a project) have their own page.</p>
+
+<h2 id="code">Code editor</h2>
+<p>Scripts open in a code editor with completion, hints and checks. Shortcuts:</p>
+<table>
+  <tbody>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td>complete</td></tr>
+    <tr><td><kbd>Tab</kbd></td><td>next argument</td></tr>
+    <tr><td><kbd>F12</kbd> / <kbd>Cmd</kbd>+click</td><td>go to definition</td></tr>
+    <tr><td><kbd>Shift</kbd>+<kbd>F12</kbd></td><td>find usages across the game's scripts and rules</td></tr>
+    <tr><td><kbd>F1</kbd></td><td>the Reference article for the word under the cursor</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>F</kbd></td><td>find</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>/</kbd></td><td>comment</td></tr>
+    <tr><td><kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd></td><td>move lines</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd></td><td>delete line</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>redo</td></tr>
+  </tbody>
+</table>
+
+<h2 id="safety">Saving, history and checks</h2>
+<ul>
+  <li><kbd>Ctrl</kbd>+<kbd>S</kbd> saves. <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes any step until you quit, including deletions.</li>
+  <li><strong>History</strong> lists past saves. Restoring one brings back its files as unsaved changes, which you can review and save again.</li>
+  <li>The <strong>mod check</strong> looks for anything the game would stumble on: archives, scripts (<code>#include</code>, <code>#inherit</code>), models and textures, <code>LEVEL_Load</code> targets. It reads the folder as saved, so save first.</li>
+</ul>

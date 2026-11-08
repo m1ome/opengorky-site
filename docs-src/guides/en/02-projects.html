@@ -1,0 +1,51 @@
+<h1>Projects and packages</h1>
+<p>How an OpenGorky project is laid out, how to turn a Classic project into one, and how to ship a mod to players as a single .ogp package.</p>
+
+<h2 id="formats">Classic or OpenGorky</h2>
+<table>
+  <thead><tr><th></th><th>Classic</th><th>OpenGorky project</th></tr></thead>
+  <tbody>
+    <tr><td>What it is</td><td>A copy of the game folder</td><td>A folder with <code>opengorky.mod</code> on top of the installed game</td></tr>
+    <tr><td>Saving writes</td><td>The game's <code>.dat</code> archives</td><td>Only the project's <code>src/</code> (and the editor's <code>.og/</code>)</td></tr>
+    <tr><td>Runs in</td><td>The original exe and Open Gorky</td><td>Open Gorky only</td></tr>
+    <tr><td>Models</td><td>1024 vertices and 2048 triangles a part, textures up to 256</td><td>Any vertex count, 32-bit textures up to 4096</td></tr>
+    <tr><td>Video</td><td>Converted to the game's ASF (640×480, 15 fps)</td><td>Kept as is: mp4, mkv, webm, mov… up to 4K</td></tr>
+    <tr><td>Scripts</td><td>Classic scripts</td><td>OG Script: components, traits, hooks</td></tr>
+  </tbody>
+</table>
+<p>The status bar shows which kind is open: <em>Original (Classic)</em> or <em>Mod: &lt;name&gt;</em>.</p>
+
+<h2 id="convert">Converting a Classic project</h2>
+<p>In <strong>Settings</strong>, choose <strong>Convert to OpenGorky…</strong>. The editor asks for a new, empty folder next to the game, converts everything to OG Script, builds the result and reopens itself on the new project. The Classic project and the installed game are not changed.</p>
+<p>The command-line tool does the same thing: <code>gorky-tool convert &lt;game&gt; &lt;out&gt;</code>.</p>
+
+<h2 id="layout">Project layout</h2>
+<pre><code>my-mod/
+  opengorky.mod        manifest: format = ogs, title, the installed game's path (game)
+  src/
+    rules/*.ogs        the engine's rules as call rows; Campaign(…) = the new game
+    game.ogs           the game's hooks: OnDamage, OnTurnStart, OnLevelEnter…
+    texts/*.ogs        texts (UiText, Examine, AreaExamine), UTF-8
+    locations/&lt;name&gt;/  a location's block, its paths and code
+    battles/&lt;name&gt;/    a battle's block
+    assets/            the project's own and changed assets
+  .og/                 the editor's own: history, test kit
+  dist/&lt;id&gt;.ogp        what players get</code></pre>
+<p>The game's own assets are read from the installed game and never copied. <code>$OPENGORKY_GAME</code> overrides the manifest's <code>game</code> path.</p>
+
+<h2 id="first-mod">Your first mod</h2>
+<ol>
+  <li>Open a Classic copy of the game and convert it (see above). The editor reopens on the new project.</li>
+  <li>Change something: an enemy class's HP, a weapon's damage, a line of dialogue.</li>
+  <li><kbd>Ctrl</kbd>+<kbd>S</kbd> saves into <code>src/</code>. The status line says how many files were written.</li>
+  <li><strong>Play</strong> builds the project and starts the game. Build errors are listed instead, and nothing starts.</li>
+  <li>When it works, <strong>Settings → Build package</strong> packs <code>dist/&lt;id&gt;.ogp</code>. The test kit and test rooms are left out.</li>
+</ol>
+
+<h2 id="ship">Giving it to players</h2>
+<p>Players put the <code>.ogp</code> into the game's <code>mods/</code> folder (or the settings folder's <code>mods/</code>) and choose it on the launcher's Play tab. They can also pass it as the first argument: <code>opengorky-viewer my-mod.ogp --play</code>. The package uses the player's own installed game, not your <code>game</code> path. Saves restore the mod's objects with their values.</p>
+
+<h2 id="cli">From the command line</h2>
+<pre><code>gorky-tool convert &lt;game&gt; &lt;out&gt;                     # Classic game → new project
+gorky-tool build   &lt;project&gt;                         # check and pack dist/&lt;id&gt;.ogp
+gorky-tool play    &lt;project&gt; --start location:&lt;level&gt; # play it</code></pre>

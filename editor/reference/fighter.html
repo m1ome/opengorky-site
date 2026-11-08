@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>fighter:: Fighter — Open Gorky Editor</title>
+  <meta name="description" content="A single fighter: health, level, skills, AI, damage, states, transformation.">
+  <link rel="canonical" href="https://opengorky.app/editor/reference/fighter.html">
+  
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/reference/fighter.html">
+  <meta property="og:title" content="fighter:: Fighter — Open Gorky Editor">
+  <meta property="og:description" content="A single fighter: health, level, skills, AI, damage, states, transformation.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../index.html" aria-label="Open Gorky — home">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../ru/editor/" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/projects.html">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../editor/reference/fighter.html" aria-current="page">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1><code>fighter</code> — Fighter</h1>
+<p>A single fighter: health, level, skills, AI, damage, states, transformation. OpenGorky-only functions have named parameters (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§8.1</a>); outside battle they do nothing and return 0 or <code>nil</code>.</p>
+
+<h2 id="summary">Summary</h2>
+
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#GetHp"><code>fighter::GetHp</code></a></td><td>Returns the fighter's current hit points (0 if the object is not found).</td></tr><tr><td class="whitespace-nowrap"><a href="#SetHp"><code>fighter::SetHp</code></a></td><td>Sets the fighter's hit points.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetLevel"><code>fighter::SetLevel</code></a></td><td>Sets the fighter's level and experience equal to that level's threshold.</td></tr><tr><td class="whitespace-nowrap"><a href="#SetWeaponSkill"><code>fighter::SetWeaponSkill</code></a></td><td>Sets the fighter's skill level with the weapon of this classic_id; adds the skill if there is none.</td></tr><tr><td class="whitespace-nowrap"><a href="#Appear"><code>fighter::Appear</code></a></td><td>The enemy is placed on tile (x0, y0), often beyond the edge of the grid, and at the start of battle walks to (x1, y1).</td></tr><tr><td class="whitespace-nowrap"><a href="#LockTarget"><code>fighter::LockTarget</code></a></td><td>The fighter attacks only this target (sets ai_mode 1).</td></tr><tr><td class="whitespace-nowrap"><a href="#GuardTile"><code>fighter::GuardTile</code></a></td><td>The fighter holds battle tile (x, y) (sets ai_mode 3).</td></tr><tr><td class="whitespace-nowrap"><a href="#SetTarget"><code>fighter::SetTarget</code></a></td><td>The fighter's AI attacks the target first (like Grandma attacking her child's killer).</td></tr><tr><td class="whitespace-nowrap"><a href="#Damage"><code>fighter::Damage</code></a></td><td>Deals damage to the fighter immediately, ignoring armor and OnHit (reflected damage is not reflected back).</td></tr><tr><td class="whitespace-nowrap"><a href="#GetLastAttacker"><code>fighter::GetLastAttacker</code></a></td><td>The fighter that hit it last, or nil.</td></tr><tr><td class="whitespace-nowrap"><a href="#Native"><code>fighter::Native</code></a></td><td>The fighter's native component with this name (<code>&quot;Guard&quot;</code>, <code>&quot;Stand&quot;</code>…) or nil; its parameters are its variables: <a href="fighter.html#Native"><code>fighter::Native(host, &quot;Guard&quot;).div = 4</code></a> changes the defense from that moment on (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§13.2</a>).</td></tr><tr><td class="whitespace-nowrap"><a href="#AddState"><code>fighter::AddState</code></a></td><td>Gives the fighter a state: <code>&quot;sleep&quot;</code>, <code>&quot;freeze&quot;</code>, <code>&quot;burn&quot;</code>, <code>&quot;gas&quot;</code>, <code>&quot;soak&quot;</code>, <code>&quot;defend&quot;</code> for <code>turns</code> turns, <code>&quot;rage&quot;</code> for <code>turns</code> actions (default 1).</td></tr><tr><td class="whitespace-nowrap"><a href="#Side"><code>fighter::Side</code></a></td><td>&quot;hero&quot;, &quot;enemy&quot;, &quot;neutral&quot; (an obstacle), &quot;civilian&quot; (on nobody's side) or &quot;&quot; (not in battle).</td></tr><tr><td class="whitespace-nowrap"><a href="#IsAlive"><code>fighter::IsAlive</code></a></td><td>True while the fighter is in battle.</td></tr><tr><td class="whitespace-nowrap"><a href="#Popup"><code>fighter::Popup</code></a></td><td>Text popping up above the fighter, like &quot;Miss&quot;.</td></tr><tr><td class="whitespace-nowrap"><a href="#Transform"><code>fighter::Transform</code></a></td><td>The fighter transforms into class <code>into</code> — a class key as the rules name it (<code>&quot;ft_hornet&quot;</code>), or a class file (<code>.mtm</code>, <code>.ftr</code>) — the same way as the battle's <code>Transform</code> row: <code>moveLock</code> and <code>attackLock</code> and the glow are removed; after <code>morf_life2</code> ticks come the new class's values (its <code>init()</code>: <code>hp</code>, <code>max_hp</code>…) and model <code>anim</code> (empty means the class's model), then the <code>idle</code> animation plays once, with sound <code>sound</code>.</td></tr></tbody></table></div>
+<h2 id="functions">Functions</h2>
+<section class="fn" id="GetHp">
+  <h3><a class="no-underline" href="#GetHp"><code>fighter::GetHp(string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterGetHp</code></span></p>
+  <p>Returns the fighter's current hit points (0 if the object is not found).</p>
+</section>
+<section class="fn" id="SetHp">
+  <h3><a class="no-underline" href="#SetHp"><code>fighter::SetHp(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterSetHp</code></span></p>
+  <p>Sets the fighter's hit points. Only an integer is accepted; there is no upper limit. OpenGorky: a call from OG Script in battle is written to the battle log (<code>name: hp set N</code>); a call from Classic is not.</p>
+</section>
+<section class="fn" id="SetLevel">
+  <h3><a class="no-underline" href="#SetLevel"><code>fighter::SetLevel(string, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterSetLevel</code></span></p>
+  <p>Sets the fighter's level and experience equal to that level's threshold.</p>
+</section>
+<section class="fn" id="SetWeaponSkill">
+  <h3><a class="no-underline" href="#SetWeaponSkill"><code>fighter::SetWeaponSkill(string, int, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterSetWeaponSkillLevel</code></span></p>
+  <p>Sets the fighter's skill level with the weapon of this classic_id; adds the skill if there is none.</p>
+</section>
+<section class="fn" id="Appear">
+  <h3><a class="no-underline" href="#Appear"><code>fighter::Appear(string, int, int, int, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AIEnemyAppear</code></span></p>
+  <p>The enemy is placed on tile (x0, y0), often beyond the edge of the grid, and at the start of battle walks to (x1, y1).</p>
+</section>
+<section class="fn" id="LockTarget">
+  <h3><a class="no-underline" href="#LockTarget"><code>fighter::LockTarget(string, string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AITargetLock</code></span></p>
+  <p>The fighter attacks only this target (sets ai_mode 1).</p>
+</section>
+<section class="fn" id="GuardTile">
+  <h3><a class="no-underline" href="#GuardTile"><code>fighter::GuardTile(string, int, int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>AIGuardPoint</code></span></p>
+  <p>The fighter holds battle tile (x, y) (sets ai_mode 3).</p>
+</section>
+<section class="fn" id="SetTarget">
+  <h3><a class="no-underline" href="#SetTarget"><code>fighter::SetTarget(string who, string target) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterSetTarget</code></span></p>
+  <p>The fighter's AI attacks the target first (like Grandma attacking her child's killer).</p>
+</section>
+<section class="fn" id="Damage">
+  <h3><a class="no-underline" href="#Damage"><code>fighter::Damage(string who, int amount, ?string kind, ?string from) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterDamage</code></span></p>
+  <p>Deals damage to the fighter immediately, ignoring armor and OnHit (reflected damage is not reflected back). <code>from</code> is on whose behalf (that fighter becomes the killer); <code>kind</code> is written to the battle log.</p>
+</section>
+<section class="fn" id="GetLastAttacker">
+  <h3><a class="no-underline" href="#GetLastAttacker"><code>fighter::GetLastAttacker(string who) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterGetLastAttacker</code></span></p>
+  <p>The fighter that hit it last, or nil.</p>
+</section>
+<section class="fn" id="Native">
+  <h3><a class="no-underline" href="#Native"><code>fighter::Native(string who, string name) → any</code></a></h3>
+  <p class="fn-meta"><span class="badge">OpenGorky only</span><span class="badge">Classic: <code>FighterNative</code></span></p>
+  <p>The fighter's native component with this name (<code>&quot;Guard&quot;</code>, <code>&quot;Stand&quot;</code>…) or nil; its parameters are its variables: <a href="fighter.html#Native"><code>fighter::Native(host, &quot;Guard&quot;).div = 4</code></a> changes the defense from that moment on (<a href="https://github.com/m1ome/opengorky/blob/main/docs/og-script.md">§13.2</a>). In and out of battle.</p>
+</section>
+<section class="fn" id="AddState">
+  <h3><a class="no-underline" href="#AddState"><code>fighter::AddState(string who, string state, ?int turns) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterAddState</code></span></p>
+  <p>Gives the fighter a state: <code>&quot;sleep&quot;</code>, <code>&quot;freeze&quot;</code>, <code>&quot;burn&quot;</code>, <code>&quot;gas&quot;</code>, <code>&quot;soak&quot;</code>, <code>&quot;defend&quot;</code> for <code>turns</code> turns, <code>&quot;rage&quot;</code> for <code>turns</code> actions (default 1). Returns 1 if done, 0 if there is no such state. Only the counter is set, without the effect's pose, sound and caption.</p>
+</section>
+<section class="fn" id="Side">
+  <h3><a class="no-underline" href="#Side"><code>fighter::Side(string who) → string</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterSide</code></span></p>
+  <p>&quot;hero&quot;, &quot;enemy&quot;, &quot;neutral&quot; (an obstacle), &quot;civilian&quot; (on nobody's side) or &quot;&quot; (not in battle).</p>
+</section>
+<section class="fn" id="IsAlive">
+  <h3><a class="no-underline" href="#IsAlive"><code>fighter::IsAlive(string who) → bool</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterAlive</code></span></p>
+  <p>True while the fighter is in battle.</p>
+</section>
+<section class="fn" id="Popup">
+  <h3><a class="no-underline" href="#Popup"><code>fighter::Popup(string who, string text) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterPopup</code></span></p>
+  <p>Text popping up above the fighter, like &quot;Miss&quot;.</p>
+</section>
+<section class="fn" id="Transform">
+  <h3><a class="no-underline" href="#Transform"><code>fighter::Transform(string who, string into, ?string anim, ?string idle, ?sound sound) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>FighterTransform</code></span></p>
+  <p>The fighter transforms into class <code>into</code> — a class key as the rules name it (<code>&quot;ft_hornet&quot;</code>), or a class file (<code>.mtm</code>, <code>.ftr</code>) — the same way as the battle's <code>Transform</code> row: <code>moveLock</code> and <code>attackLock</code> and the glow are removed; after <code>morf_life2</code> ticks come the new class's values (its <code>init()</code>: <code>hp</code>, <code>max_hp</code>…) and model <code>anim</code> (empty means the class's model), then the <code>idle</code> animation plays once, with sound <code>sound</code>. The health the fighter has at the end of the transformation (including health set by <a href="fighter.html#SetHp"><code>fighter::SetHp</code></a> after <a href="fighter.html#Transform"><code>fighter::Transform</code></a>) is kept; <code>max_hp</code> and the rest come from the new class. Native and scripted abilities are taken from the <code>Abilities</code> row of the new class: the old scripted abilities that are not in it are detached, new ones are attached, and one present in both stays as it was (with its variables). Returns 1; 0 if there is no such fighter or class.</p>
+</section>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>path:: Path scripts — Open Gorky Editor</title>
+  <meta name="description" content="Path script (.pth) functions: they act on the path node's actor — not on host, and without an actor argument.">
+  <link rel="canonical" href="https://opengorky.app/editor/reference/path.html">
+  
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/reference/path.html">
+  <meta property="og:title" content="path:: Path scripts — Open Gorky Editor">
+  <meta property="og:description" content="Path script (.pth) functions: they act on the path node's actor — not on host, and without an actor argument.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../index.html" aria-label="Open Gorky — home">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../ru/editor/" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/projects.html">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../editor/reference/path.html" aria-current="page">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1><code>path</code> — Path scripts</h1>
+<p>Path script (<code>.pth</code>) functions: they act on the path node's actor — not on <code>host</code>, and without an actor argument. In a project a location's walk paths (stairs, ladders, a plank: the route between two cells of the walk grid that the walk takes through the path's points) are <code>path</code> blocks inside its level block, in the location's <code>paths.ogs</code>: <code>link</code> — the start and end cells, <code>points</code> — <code>PathPoint(x, y, angle, z)</code> records (background x, y, the angle the walker turns to, the height), and its code in the block: <code>fn OnNode(no, dir, walker)</code> runs when an actor passes point <code>no</code> (<code>dir</code> 1 forward, 0 back). The engine reads the paths from these blocks only (not the game's <code>.ap</code>) and makes a path's object at its first point passed; the converter writes them of the level's <code>&lt;level&gt;.ap</code> and <code>&lt;path&gt;.pth</code>, the editor's Paths tool edits them.</p>
+<pre><code>level &quot;01_port&quot; {
+    path deska {
+        link = [182, 22, 189, 11];
+        points = [
+            PathPoint(x = 1460, y = 180, angle = 0.0, z = 135),
+            PathPoint(x = 1516, y = 92, angle = 0.0, z = 135),
+        ];
+        fn OnNode(no, dir, walker) {
+            if (dir == 1 and no == 0) path::SetWalkAnimation(&quot;walk_footbridge&quot;);
+            if (dir == 1 and no == 1) path::SetWalkAnimation(&quot;walk&quot;);
+        }
+    }
+}</code></pre>
+
+<h2 id="summary">Summary</h2>
+
+<div class="overflow-x-auto"><table><tbody><tr><td class="whitespace-nowrap"><a href="#SetWalkAnimation"><code>path::SetWalkAnimation</code></a></td><td>Path script: the actor walks the rest of the path with this animation at its speed; a nonzero reverse plays it backwards (going down stairs).</td></tr><tr><td class="whitespace-nowrap"><a href="#Animation"><code>path::Animation</code></a></td><td>Path script: a one-shot animation; movement waits for it to finish; reverse = 1 plays it backwards.</td></tr><tr><td class="whitespace-nowrap"><a href="#AsyncAnimation"><code>path::AsyncAnimation</code></a></td><td>Path script: a one-shot animation without stopping movement; flags as in path::Animation.</td></tr><tr><td class="whitespace-nowrap"><a href="#QueueWalkAnimation"><code>path::QueueWalkAnimation</code></a></td><td>Path script: sets a one-shot animation for the next path segment; a = 1 means no blending, reverse = 1 plays it backwards.</td></tr><tr><td class="whitespace-nowrap"><a href="#AsyncWalkAnimation"><code>path::AsyncWalkAnimation</code></a></td><td>Path script: immediately starts the walk animation (the one set by path::QueueWalkAnimation, if any, otherwise the current one) without stopping movement.</td></tr><tr><td class="whitespace-nowrap"><a href="#AdjustAngle"><code>path::AdjustAngle</code></a></td><td>Path script: turns the actor to the angle of the current path point (at the end of the path, the last point).</td></tr><tr><td class="whitespace-nowrap"><a href="#EnableRotation"><code>path::EnableRotation</code></a></td><td>Path script: 0 — the actor does not turn toward path points, 1 — it turns again.</td></tr><tr><td class="whitespace-nowrap"><a href="#DisableInterpolation"><code>path::DisableInterpolation</code></a></td><td>Path script: the next animation starts without blending from the previous one.</td></tr><tr><td class="whitespace-nowrap"><a href="#WaitForAnimation"><code>path::WaitForAnimation</code></a></td><td>Path script: movement along the path waits for the current one-shot animation to finish.</td></tr><tr><td class="whitespace-nowrap"><a href="#WaitForInterpolation"><code>path::WaitForInterpolation</code></a></td><td>Path script: movement waits for animation blending to finish.</td></tr><tr><td class="whitespace-nowrap"><a href="#Delay"><code>path::Delay</code></a></td><td>Path script: pauses the actor for ticks ticks.</td></tr></tbody></table></div>
+<h2 id="functions">Functions</h2>
+<section class="fn" id="SetWalkAnimation">
+  <h3><a class="no-underline" href="#SetWalkAnimation"><code>path::SetWalkAnimation(string, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorSetWalkAnimation</code></span></p>
+  <p>Path script: the actor walks the rest of the path with this animation at its speed; a nonzero reverse plays it backwards (going down stairs).</p>
+</section>
+<section class="fn" id="Animation">
+  <h3><a class="no-underline" href="#Animation"><code>path::Animation(string, ?int, ?int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorAnimation</code></span></p>
+  <p>Path script: a one-shot animation; movement waits for it to finish; reverse = 1 plays it backwards. a = 1 means no blending into it, b = 1 no blending into the next one.</p>
+</section>
+<section class="fn" id="AsyncAnimation">
+  <h3><a class="no-underline" href="#AsyncAnimation"><code>path::AsyncAnimation(string, ?int, ?int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorAsyncAnimation</code></span></p>
+  <p>Path script: a one-shot animation without stopping movement; flags as in path::Animation.</p>
+</section>
+<section class="fn" id="QueueWalkAnimation">
+  <h3><a class="no-underline" href="#QueueWalkAnimation"><code>path::QueueWalkAnimation(string, ?int, ?int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorQueueWalkAnimation</code></span></p>
+  <p>Path script: sets a one-shot animation for the next path segment; a = 1 means no blending, reverse = 1 plays it backwards.</p>
+</section>
+<section class="fn" id="AsyncWalkAnimation">
+  <h3><a class="no-underline" href="#AsyncWalkAnimation"><code>path::AsyncWalkAnimation(?int, ?int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorAsyncWalkAnimation</code></span></p>
+  <p>Path script: immediately starts the walk animation (the one set by path::QueueWalkAnimation, if any, otherwise the current one) without stopping movement. a = 1 means no blending into it, b = 1 no blending into the next one.</p>
+</section>
+<section class="fn" id="AdjustAngle">
+  <h3><a class="no-underline" href="#AdjustAngle"><code>path::AdjustAngle() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorAdjustAngle</code></span></p>
+  <p>Path script: turns the actor to the angle of the current path point (at the end of the path, the last point).</p>
+</section>
+<section class="fn" id="EnableRotation">
+  <h3><a class="no-underline" href="#EnableRotation"><code>path::EnableRotation(int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorEnableRotation</code></span></p>
+  <p>Path script: 0 — the actor does not turn toward path points, 1 — it turns again.</p>
+</section>
+<section class="fn" id="DisableInterpolation">
+  <h3><a class="no-underline" href="#DisableInterpolation"><code>path::DisableInterpolation() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorDisableInterpolation</code></span></p>
+  <p>Path script: the next animation starts without blending from the previous one.</p>
+</section>
+<section class="fn" id="WaitForAnimation">
+  <h3><a class="no-underline" href="#WaitForAnimation"><code>path::WaitForAnimation(?string) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorQueueWaitForAnimation</code></span></p>
+  <p>Path script: movement along the path waits for the current one-shot animation to finish. The optional name only lets the queue continue in the same tick if it was exactly this animation that finished.</p>
+</section>
+<section class="fn" id="WaitForInterpolation">
+  <h3><a class="no-underline" href="#WaitForInterpolation"><code>path::WaitForInterpolation() → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorQueueWaitForInterpolation</code></span></p>
+  <p>Path script: movement waits for animation blending to finish.</p>
+</section>
+<section class="fn" id="Delay">
+  <h3><a class="no-underline" href="#Delay"><code>path::Delay(int) → int</code></a></h3>
+  <p class="fn-meta"><span class="badge">Classic: <code>ActorDelay</code></span></p>
+  <p>Path script: pauses the actor for ticks ticks. Classic <code>ActorQueueDelay</code> is the same function (the same exe handler).</p>
+</section>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

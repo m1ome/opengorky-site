@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects and packages — Open Gorky Editor</title>
+  <meta name="description" content="How an OpenGorky project is laid out, how to turn a Classic project into one, and how to ship a mod to players as a single .ogp package.">
+  <link rel="canonical" href="https://opengorky.app/editor/projects.html">
+  <link rel="alternate" hreflang="en" href="https://opengorky.app/editor/projects.html">
+  <link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://opengorky.app/editor/projects.html">
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/editor/projects.html">
+  <meta property="og:title" content="Projects and packages — Open Gorky Editor">
+  <meta property="og:description" content="How an OpenGorky project is laid out, how to turn a Classic project into one, and how to ship a mod to players as a single .ogp package.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Skip to content</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../index.html" aria-label="Open Gorky — home">
+        <img src="../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Menu
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Main">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../index.html#project">The project</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../index.html#development">Development</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../editor/" aria-current="page">Editor</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../faq.html">FAQ</a></li>
+          <li class="flex items-center gap-3"><span class="flex items-center gap-2 py-3 text-accent"><img src="../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</span><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><a class="flex items-center gap-2 py-3 hover:text-accent" href="../ru/editor/projects.html" hreflang="ru" lang="ru" aria-label="RU — Русская версия"><img src="../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</a></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Source code <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../editor/reference/" data-guides="../editor/">
+          <label class="sr-only" for="docs-q">Search the docs…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Search the docs…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Documentation">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Guides</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/index.html">Level editor</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/getting-started.html">Getting started</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../editor/projects.html" aria-current="page">Projects and packages</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/editor-tour.html">Editor tour</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Reference</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Field manual / Level editor</p>
+<h1>Projects and packages</h1>
+<p>How an OpenGorky project is laid out, how to turn a Classic project into one, and how to ship a mod to players as a single .ogp package.</p>
+
+<h2 id="formats">Classic or OpenGorky</h2>
+<table>
+  <thead><tr><th></th><th>Classic</th><th>OpenGorky project</th></tr></thead>
+  <tbody>
+    <tr><td>What it is</td><td>A copy of the game folder</td><td>A folder with <code>opengorky.mod</code> on top of the installed game</td></tr>
+    <tr><td>Saving writes</td><td>The game's <code>.dat</code> archives</td><td>Only the project's <code>src/</code> (and the editor's <code>.og/</code>)</td></tr>
+    <tr><td>Runs in</td><td>The original exe and Open Gorky</td><td>Open Gorky only</td></tr>
+    <tr><td>Models</td><td>1024 vertices and 2048 triangles a part, textures up to 256</td><td>Any vertex count, 32-bit textures up to 4096</td></tr>
+    <tr><td>Video</td><td>Converted to the game's ASF (640×480, 15 fps)</td><td>Kept as is: mp4, mkv, webm, mov… up to 4K</td></tr>
+    <tr><td>Scripts</td><td>Classic scripts</td><td>OG Script: components, traits, hooks</td></tr>
+  </tbody>
+</table>
+<p>The status bar shows which kind is open: <em>Original (Classic)</em> or <em>Mod: &lt;name&gt;</em>.</p>
+
+<h2 id="convert">Converting a Classic project</h2>
+<p>In <strong>Settings</strong>, choose <strong>Convert to OpenGorky…</strong>. The editor asks for a new, empty folder next to the game, converts everything to OG Script, builds the result and reopens itself on the new project. The Classic project and the installed game are not changed.</p>
+<p>The command-line tool does the same thing: <code>gorky-tool convert &lt;game&gt; &lt;out&gt;</code>.</p>
+
+<h2 id="layout">Project layout</h2>
+<pre><code>my-mod/
+  opengorky.mod        manifest: format = ogs, title, the installed game's path (game)
+  src/
+    rules/*.ogs        the engine's rules as call rows; Campaign(…) = the new game
+    game.ogs           the game's hooks: OnDamage, OnTurnStart, OnLevelEnter…
+    texts/*.ogs        texts (UiText, Examine, AreaExamine), UTF-8
+    locations/&lt;name&gt;/  a location's block, its paths and code
+    battles/&lt;name&gt;/    a battle's block
+    assets/            the project's own and changed assets
+  .og/                 the editor's own: history, test kit
+  dist/&lt;id&gt;.ogp        what players get</code></pre>
+<p>The game's own assets are read from the installed game and never copied. <code>$OPENGORKY_GAME</code> overrides the manifest's <code>game</code> path.</p>
+
+<h2 id="first-mod">Your first mod</h2>
+<ol>
+  <li>Open a Classic copy of the game and convert it (see above). The editor reopens on the new project.</li>
+  <li>Change something: an enemy class's HP, a weapon's damage, a line of dialogue.</li>
+  <li><kbd>Ctrl</kbd>+<kbd>S</kbd> saves into <code>src/</code>. The status line says how many files were written.</li>
+  <li><strong>Play</strong> builds the project and starts the game. Build errors are listed instead, and nothing starts.</li>
+  <li>When it works, <strong>Settings → Build package</strong> packs <code>dist/&lt;id&gt;.ogp</code>. The test kit and test rooms are left out.</li>
+</ol>
+
+<h2 id="ship">Giving it to players</h2>
+<p>Players put the <code>.ogp</code> into the game's <code>mods/</code> folder (or the settings folder's <code>mods/</code>) and choose it on the launcher's Play tab. They can also pass it as the first argument: <code>opengorky-viewer my-mod.ogp --play</code>. The package uses the player's own installed game, not your <code>game</code> path. Saves restore the mod's objects with their values.</p>
+
+<h2 id="cli">From the command line</h2>
+<pre><code>gorky-tool convert &lt;game&gt; &lt;out&gt;                     # Classic game → new project
+gorky-tool build   &lt;project&gt;                         # check and pack dist/&lt;id&gt;.ogp
+gorky-tool play    &lt;project&gt; --start location:&lt;level&gt; # play it</code></pre>
+<nav class="pager" aria-label="Pages"><a href="getting-started.html">← Getting started</a><a href="editor-tour.html">Editor tour →</a></nav>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Independent fan project. Not affiliated with the original rights holders.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Cookie settings</button>
+    </div>
+  </footer>
+
+  <script src="../site-config.js"></script>
+  <script src="../editor/search-index.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>

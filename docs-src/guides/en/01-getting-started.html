@@ -1,0 +1,32 @@
+<h1>Getting started</h1>
+<p>Install the editor, point it at a game folder and make a first change you can play.</p>
+
+<h2 id="install">Install</h2>
+<p>Download the editor package for your platform from the <a href="index.html#download">editor page</a> and unpack it:</p>
+<ul>
+  <li><strong>Windows:</strong> run <code>OpenGorkyEditor.exe</code>.</li>
+  <li><strong>macOS:</strong> open <code>OpenGorky Editor.app</code>.</li>
+  <li><strong>Linux:</strong> run <code>./opengorky-editor</code>.</li>
+</ul>
+<p>To play from the editor you also need the game itself (Open Gorky). By default the editor looks for it next to itself. Otherwise, set it in <strong>Settings → Port (viewer)</strong>.</p>
+
+<h2 id="folder">Choose a folder</h2>
+<p>The editor starts empty. Open the <strong>Settings</strong> tab and pick the <strong>Game folder</strong>:</p>
+<ul>
+  <li>a <strong>copy</strong> of your Gorky 17 installation for a Classic project, or</li>
+  <li>an OpenGorky project folder (the one with <code>opengorky.mod</code>).</li>
+</ul>
+<p class="note">A Classic project is edited in place: saving rewrites its <code>.dat</code> archives. Always pick a copy of the game, not the one you play.</p>
+<p>The Settings tab also sets the interface language (English or Russian) and its scale (<kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>+</kbd> / <kbd>−</kbd> / <kbd>0</kbd>).</p>
+
+<h2 id="first-edit">A first edit</h2>
+<ol>
+  <li>Pick a battle in the asset tree on the left. The map opens in the centre.</li>
+  <li>Drag an enemy to another tile, or right-click the map and choose <strong>Add enemy</strong>. Only walkable floor (green or blue) takes it.</li>
+  <li>Select the enemy and change its HP in the parameters panel. Values set here override its class for this battle only.</li>
+  <li>Press <kbd>Ctrl</kbd>+<kbd>S</kbd> to save. <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes any step until then.</li>
+  <li>Press <strong>Play</strong> on the toolbar: the game starts the battle with the starting party.</li>
+</ol>
+
+<h2 id="help">Help inside the editor</h2>
+<p>Press <kbd>F1</kbd> anywhere to open the Reference. It lists script functions, engine callbacks, hooks, rules calls and engine settings. In the code editor, <kbd>F1</kbd> on a known word opens its article. The <a href="reference/">built-in functions</a> on this site come from the same descriptions.</p>

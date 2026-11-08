@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обзор редактора — Open Gorky Editor</title>
+  <meta name="description" content="Что делает каждая часть окна редактора: дерево ресурсов, страницы для каждого вида ресурсов, инструменты уровня, редактор кода и проверки.">
+  <link rel="canonical" href="https://opengorky.app/ru/editor/editor-tour.html">
+  <link rel="alternate" hreflang="en" href="https://opengorky.app/editor/editor-tour.html">
+  <link rel="alternate" hreflang="ru" href="https://opengorky.app/ru/editor/editor-tour.html">
+  <link rel="alternate" hreflang="x-default" href="https://opengorky.app/editor/editor-tour.html">
+  <meta name="theme-color" content="#101310">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Open Gorky">
+  <meta property="og:url" content="https://opengorky.app/ru/editor/editor-tour.html">
+  <meta property="og:title" content="Обзор редактора — Open Gorky Editor">
+  <meta property="og:description" content="Что делает каждая часть окна редактора: дерево ресурсов, страницы для каждого вида ресурсов, инструменты уровня, редактор кода и проверки.">
+  <meta property="og:image" content="https://opengorky.app/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../../assets/radiation-17.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="bg-char text-ivory antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-ink" href="#main">Перейти к содержимому</a>
+
+  <header class="relative z-30 border-b border-line-dark">
+    <div class="wrap flex h-20 items-center justify-between gap-3 lg:h-24">
+      <a class="flex items-center gap-3 sm:gap-5" href="../../ru/index.html" aria-label="Open Gorky — главная">
+        <img src="../../assets/radiation-17.svg" alt="" width="50" height="50" class="size-10 lg:size-[50px]">
+        <span class="border-l border-line-dark py-2 pl-3 font-mono text-sm tracking-[.3em] sm:pl-5 sm:text-base sm:tracking-[.45em] whitespace-nowrap uppercase lg:text-lg" aria-hidden="true">Open Gorky</span>
+      </a>
+      <button class="flex min-h-11 items-center gap-2 border border-line-dark px-4 font-mono text-sm lg:hidden" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span>Меню
+      </button>
+      <nav id="site-nav" class="max-lg:absolute max-lg:inset-x-0 max-lg:top-20 max-lg:hidden max-lg:border-y max-lg:border-line-dark max-lg:bg-char max-lg:[&.is-open]:block" aria-label="Основное">
+        <ul class="flex font-mono text-sm max-lg:wrap max-lg:flex-col max-lg:py-4 lg:items-center lg:gap-11">
+          <li><a class="block py-3 hover:text-accent" href="../../ru/index.html#project">О проекте</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../ru/index.html#development">Разработка</a></li>
+          <li><a class="block py-3 hover:text-accent lg:border-b-2 lg:border-accent max-lg:text-accent" href="../../ru/editor/" aria-current="page">Редактор</a></li>
+          <li><a class="block py-3 hover:text-accent" href="../../ru/faq.html">Вопросы</a></li>
+          <li class="flex items-center gap-3"><a class="flex items-center gap-2 py-3 hover:text-accent" href="../../editor/editor-tour.html" hreflang="en" lang="en" aria-label="EN — English version"><img src="../../assets/flag-en.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">EN</a><span class="h-4 w-px bg-line-dark" aria-hidden="true"></span><span class="flex items-center gap-2 py-3 text-accent"><img src="../../assets/flag-ru.svg" alt="" width="20" height="14" class="h-3.5 w-5 object-cover">RU</span></li>
+          <li class="max-lg:pt-3"><a class="btn border-ivory hover:not-aria-disabled:bg-ivory hover:not-aria-disabled:text-ink" data-config-link="repositoryUrl">Исходный код <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bg-ivory text-ink">
+    <div class="wrap grid gap-8 py-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12 lg:py-10">
+      <aside class="lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto lg:border-r lg:border-line-light lg:pr-6">
+        <div class="relative" data-docs-search data-base="../../editor/reference/" data-guides="../../ru/editor/">
+          <label class="sr-only" for="docs-q">Поиск по документации…</label>
+          <input id="docs-q" type="search" autocomplete="off" placeholder="Поиск по документации…" class="w-full border border-line-light bg-transparent px-3 py-2 font-mono text-sm placeholder:text-ink/55" aria-controls="docs-results">
+          <ul id="docs-results" class="absolute inset-x-0 top-full z-20 max-h-80 overflow-y-auto border border-t-0 border-line-light bg-ivory font-mono text-sm shadow-lg" hidden></ul>
+        </div>
+        <nav class="mt-6 font-mono text-sm" aria-label="Документация">
+          <p class="text-xs tracking-[.2em] text-accent uppercase">Руководства</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../ru/editor/index.html">Редактор уровней</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../ru/editor/getting-started.html">Начало работы</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../ru/editor/projects.html">Проекты и пакеты</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-accent text-accent" href="../../ru/editor/editor-tour.html" aria-current="page">Обзор редактора</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../ru/editor/og-script.html">OG Script</a></li></ul>
+          <p class="mt-6 text-xs tracking-[.2em] text-accent uppercase">Справочник (EN)</p>
+          <ul class="mt-2 max-lg:flex max-lg:flex-wrap max-lg:gap-x-4"><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/">Overview</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/core.html">Root: the core</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/object.html">object::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/sound.html">sound::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/actor.html">actor::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/path.html">path::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/level.html">level::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/hero.html">hero::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/scene.html">scene::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/gui.html">gui::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/item.html">item::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/battle.html">battle::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/fighter.html">fighter::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/events.html">events::</a></li><li><a class="block py-1.5 hover:text-accent lg:border-l-4 lg:pl-3 border-transparent" href="../../editor/reference/classic-only.html">Classic only</a></li></ul>
+        </nav>
+      </aside>
+      <main id="main" class="doc min-w-0">
+        <p class="font-mono text-xs tracking-[.12em] text-accent uppercase">Полевой устав / Редактор уровней</p>
+<h1>Обзор редактора</h1>
+<p>Что делает каждая часть окна редактора: дерево ресурсов, страницы для каждого вида ресурсов, инструменты уровня, редактор кода и проверки.</p>
+
+<h2 id="window">Окно</h2>
+<ul>
+  <li><strong>Дерево ресурсов</strong> слева, с поиском. В нём сборки (локации, бои, персонажи, предметы, сцены), компоненты, исходные ресурсы (звуки, спрайты, шрифты…) и сам проект. Правая кнопка мыши открывает копирование, вставку и создание.</li>
+  <li><strong>Центр</strong>: открытый документ, у каждого своя вкладка.</li>
+  <li><strong>Панель инструментов</strong>: <strong>Играть</strong>, <strong>Вписать</strong> и признак несохранённых правок.</li>
+  <li><strong>Строка состояния</strong>: вид проекта, последнее действие и число проблем, найденных проверкой мода.</li>
+</ul>
+
+<h2 id="levels">Локации и бои</h2>
+<p>Уровень открывается картой с панелями инструментов:</p>
+<ul>
+  <li><strong>Объекты</strong>: перетаскивайте предметы, бойцов, ящики и декорации. Правая кнопка на карте или в строке списка добавляет врага, героя, ящик, предмет или декорацию, меняет содержимое ящика или убирает объект. <kbd>Delete</kbd> удаляет выбранный объект. В боях враг может входить в начале боя или стоять на клетке сразу, а декорации поворачиваются стрелками рядом с ними.</li>
+  <li><strong>Рисование</strong>: слои карты (проходимость, зоны, свет) рисуются кистью. Каждый мазок отменяется отдельным шагом. Заблокированный слой сначала нужно разблокировать.</li>
+  <li><strong>Пути</strong>, <strong>камера</strong>, <strong>свет</strong>, <strong>зоны</strong> и <strong>триггеры</strong>: маршруты уровня (лестницы, мостки), обзор, освещение, области и то, что в них происходит.</li>
+</ul>
+<p>Новый уровень можно начать с пустой картинки: от 640×480 до 2600×1916 в Classic и до 8192×8192 в проекте OpenGorky, кратно 8.</p>
+
+<h2 id="entries">Персонажи, оружие и предметы</h2>
+<p>Значения на странице класса действуют на всех таких врагов или предметы в игре. Собственные значения врага в конкретном бою важнее значений класса. <strong>Создать копию</strong> делает новый класс, оружие, предмет, патроны или героя, и страница объясняет, что копия делит с оригиналом. Модели импортируются из <code>.glb</code>, текстуры из PNG. Удары, снаряды и эффекты правятся на своих страницах. <strong>Комната для боя</strong> отправляет бойца в скрытый бой, чтобы его проверить. <strong>Снаряжение для теста</strong> задаёт, что герои несут туда с собой.</p>
+
+<h2 id="media">Сцены, тексты и медиа</h2>
+<ul>
+  <li><strong>Сцены и диалоги</strong>: списки команд и реплики. Сцену можно выключить.</li>
+  <li><strong>Тексты</strong>: все строки игры. Редактор предупредит, если в кодировке или шрифте игры нет нужного символа.</li>
+  <li><strong>Звуки</strong> и <strong>музыка</strong>: импорт из WAV или MP3, редактор сам переводит их в формат игры.</li>
+  <li><strong>Видео</strong>: любое, что читает FFmpeg. В Classic оно конвертируется в ASF игры, в проекте OpenGorky хранится как есть.</li>
+  <li><strong>Шрифты</strong>: недостающие символы дорисовываются из шрифта TrueType. <strong>Спрайты</strong> и <strong>эффекты</strong>: рисование кистью или импорт кадров из PNG.</li>
+</ul>
+
+<h2 id="rules">Игра, правила и интерфейс</h2>
+<p>В проекте OpenGorky на странице кампании задаются новая игра, отряд, видео, музыка, опыт, формулы и состояния бойцов, а также хуки <code>src/game.ogs</code>. На страницах правил настраиваются уровни опыта, особые значения, профили ИИ и действия. На странице интерфейса правятся главное меню, окна и панель. Для настроек движка (<code>adjust.kdt</code>, в проекте <code>rules/settings.ogs</code>) есть отдельная страница.</p>
+
+<h2 id="code">Редактор кода</h2>
+<p>Скрипты открываются в редакторе кода с автодополнением, подсказками и проверками. Горячие клавиши:</p>
+<table>
+  <tbody>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>Space</kbd></td><td>дополнить</td></tr>
+    <tr><td><kbd>Tab</kbd></td><td>следующий аргумент</td></tr>
+    <tr><td><kbd>F12</kbd> / <kbd>Cmd</kbd>+щелчок</td><td>перейти к определению</td></tr>
+    <tr><td><kbd>Shift</kbd>+<kbd>F12</kbd></td><td>найти использования в скриптах и правилах игры</td></tr>
+    <tr><td><kbd>F1</kbd></td><td>статья справки о слове под курсором</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>F</kbd></td><td>поиск</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>/</kbd></td><td>закомментировать</td></tr>
+    <tr><td><kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd></td><td>переместить строки</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd></td><td>удалить строку</td></tr>
+    <tr><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>повторить</td></tr>
+  </tbody>
+</table>
+
+<h2 id="safety">Сохранение, история и проверки</h2>
+<ul>
+  <li><kbd>Ctrl</kbd>+<kbd>S</kbd> сохраняет. <kbd>Ctrl</kbd>+<kbd>Z</kbd> отменяет любой шаг, включая удаление, пока редактор открыт.</li>
+  <li><strong>История</strong> хранит прошлые сохранения. Если вернуться к одному из них, его файлы снова станут несохранёнными правками: их можно просмотреть и сохранить заново.</li>
+  <li><strong>Проверка мода</strong> ищет всё, на чём игра может споткнуться: архивы, скрипты (<code>#include</code>, <code>#inherit</code>), модели и текстуры, цели <code>LEVEL_Load</code>. Она читает папку в сохранённом виде, поэтому сначала сохраните правки.</li>
+</ul>
+<nav class="pager" aria-label="Страницы"><a href="projects.html">← Проекты и пакеты</a><a href="og-script.html">OG Script →</a></nav>
+      </main>
+    </div>
+  </div>
+
+  <footer class="py-8">
+    <div class="wrap flex flex-wrap items-center gap-4 font-mono text-xs text-muted">
+      <img src="../../assets/radiation-17.svg" alt="" width="28" height="28" loading="lazy">
+      <p>Независимый фанатский проект. Не связан с правообладателями оригинальной игры.</p>
+      <button type="button" class="ml-auto shrink-0 underline underline-offset-4 hover:text-accent" data-consent-open hidden>Настройки cookies</button>
+    </div>
+  </footer>
+
+  <script src="../../site-config.js"></script>
+  <script src="../../editor/search-index.js"></script>
+  <script src="../../site.js"></script>
+</body>
+</html>

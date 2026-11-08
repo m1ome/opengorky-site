@@ -1,0 +1,23 @@
+<h1>Level editor</h1>
+<p>The Open Gorky editor changes Gorky 17: locations and battles, characters, weapons and items, scenes and dialogue, texts, sounds, music and video, and the game's rules. You can try every change in the game straight from the editor.</p>
+
+<h2 id="download">Download</h2>
+<p>The editor is a separate download, built from the same release as the game. It needs the original game files, just like the game does.</p>
+<ul class="grid list-none gap-x-10 pl-0 sm:grid-cols-2" data-downloads="editor" aria-label="Editor builds"></ul>
+<p class="text-sm" data-downloads-note>Builds are not linked yet.</p>
+
+<h2 id="two-kinds">Two kinds of project</h2>
+<ul>
+  <li><strong>Classic.</strong> A copy of the game folder. The editor saves into its <code>.dat</code> archives, so the original <code>gorky17.exe</code> runs the result too, but imports must stay within the original's limits.</li>
+  <li><strong>OpenGorky project.</strong> A folder of OG Script texts and the project's own assets on top of the installed game, which it never changes. Only Open Gorky runs it. In return it lifts the original's limits and adds hooks, components and scripted abilities. You hand players a single <code>.ogp</code> package.</li>
+</ul>
+<p>The <a href="getting-started.html">Getting started</a> guide sets up either kind. <a href="projects.html">Projects and packages</a> covers converting a Classic project and shipping a mod.</p>
+
+<h2 id="docs">In this documentation</h2>
+<ul>
+  <li><a href="getting-started.html">Getting started</a>: install, choose a folder, first edit.</li>
+  <li><a href="projects.html">Projects and packages</a>: project layout, converting, building <code>.ogp</code>, your first mod.</li>
+  <li><a href="editor-tour.html">Editor tour</a>: what each part of the window does, plus keyboard shortcuts.</li>
+  <li><a href="og-script.html">OG Script</a>: the scripting language in five minutes.</li>
+  <li><a href="reference/">Built-in functions</a>: every function a script can call, by package.</li>
+</ul>
